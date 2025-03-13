@@ -1,6 +1,6 @@
 const express = require('express');
 const cors = require('cors');
-const sequelize = require('./config/db');
+const sequelize = require('./config/database');
 require('dotenv').config();
 
 const app = express();
