@@ -21,7 +21,7 @@ const Entreprise = sequelize.define('Entreprise', {
         allowNull: false 
     },
     a_propos: { 
-        ype: DataTypes.TEXT 
+        type: DataTypes.TEXT 
     },
     email: { 
         type: DataTypes.STRING, 
