@@ -1,0 +1,107 @@
+// Définir tes couleurs comme variables Sass
+$background-color: #f1f8fc;
+$footer-text-color: #f1f8fc;
+$button-text-color: #f1f8fc;
+$footer-bg-color: #0074c7;
+$button-bg-color: #0074c7;
+$title-color: #00497c;
+$text-color: #384050;
+$accent-red: #cd2c2e;
+$accent-green: #82b864;
+
+// Personnaliser Bootstrap
+$primary: $button-bg-color;
+
+// Importer Bootstrap avec un espace de noms
+@use "bootstrap/scss/bootstrap" as bs;
+
+// Styles personnalisés
+body {
+  background-color: $background-color;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  color: $text-color;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: $title-color;
+}
+
+footer {
+  background-color: $footer-bg-color;
+  color: $footer-text-color;
+  padding: 1rem;
+}
+
+.btn-primary {
+  background-color: $button-bg-color;
+  border-color: $button-bg-color; // Aligne la bordure avec le fond pour éviter l’effet sombre
+  color: $button-text-color;
+  border-width: 0; // Supprime la bordure par défaut de Bootstrap
+  box-shadow: none; // Supprime l’ombre par défaut de Bootstrap
+  border-radius: 50px; 
+  padding: 10px 20px; // Ajuste le padding pour un look circulaire
+
+  &:hover {
+    background-color: darken($button-bg-color, 10%);
+    border-color: darken($button-bg-color, 10%);
+  }
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  transition: filter 300ms;
+  &:hover {
+    filter: drop-shadow(0 0 2em #646cffaa);
+  }
+  &.react:hover {
+    filter: drop-shadow(0 0 2em #61dafbaa);
+  }
+}
+
+.card {
+  padding: 2em;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.read-the-docs {
+  color: $text-color;
+}
+
+// Classe pour le trait décoratif au-dessus du texte
+.decorative-line {
+  position: relative;
+  display: inline-block;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: -10px;
+    left: 0;
+    width: 40px;
+    height: 4px;
+    background-color: $accent-red;
+  }
+}
+
+// Variante avec la couleur verte
+.decorative-line-green {
+  position: relative;
+  display: inline-block;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: -10px;
+    left: 0;
+    width: 40px;
+    height: 4px;
+    background-color: $accent-green;
+  }
+}
