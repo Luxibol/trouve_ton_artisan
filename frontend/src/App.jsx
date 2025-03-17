@@ -4,6 +4,7 @@ import Footer from './components/Footer';
 import Home from './pages/Home';
 import EntreprisesList from './pages/EntreprisesList';
 import EntrepriseDetail from './pages/EntrepriseDetail';
+import NotFound from './pages/NotFound';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/entreprises/:categoryId" element={<EntreprisesList />} />
           <Route path="/entreprise/:id" element={<EntrepriseDetail />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
       <Footer />
