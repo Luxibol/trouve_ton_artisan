@@ -30,6 +30,18 @@ h1, h2, h3, h4, h5, h6 {
   color: $title-color;
 }
 
+header {
+  background-color: $background-color; // Applique la variable
+  color: $text-color; // Applique la variable
+}
+
+.nav-link {
+  color: $text-color !important; // Assure que les liens sont visibles
+  &:hover {
+    color: darken($text-color, 10%) !important; // Effet au survol
+  }
+}
+
 footer {
   background-color: $footer-bg-color;
   color: $footer-text-color;
@@ -38,12 +50,12 @@ footer {
 
 .btn-primary {
   background-color: $button-bg-color;
-  border-color: $button-bg-color; // Aligne la bordure avec le fond pour éviter l’effet sombre
+  border-color: $button-bg-color;
   color: $button-text-color;
-  border-width: 0; // Supprime la bordure par défaut de Bootstrap
-  box-shadow: none; // Supprime l’ombre par défaut de Bootstrap
-  border-radius: 50px; 
-  padding: 10px 20px; // Ajuste le padding pour un look circulaire
+  border-width: 0;
+  box-shadow: none;
+  border-radius: 50px;
+  padding: 10px 20px;
 
   &:hover {
     background-color: darken($button-bg-color, 10%);
@@ -74,7 +86,6 @@ footer {
   color: $text-color;
 }
 
-// Classe pour le trait décoratif au-dessus du texte
 .decorative-line {
   position: relative;
   display: inline-block;
@@ -90,7 +101,6 @@ footer {
   }
 }
 
-// Variante avec la couleur verte
 .decorative-line-green {
   position: relative;
   display: inline-block;

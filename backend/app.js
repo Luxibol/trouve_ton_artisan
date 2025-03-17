@@ -17,7 +17,7 @@ sequelize.authenticate()
   .catch((err) => console.error('Impossible de se connecter à la base de données:', err));
 
 // Routes
-app.use('/entreprises', entrepriseRoutes);
+app.use('/api', entrepriseRoutes); // Change /entreprises en /api
 app.get('/', (req, res) => res.send('API backend fonctionne!'));
 
 module.exports = app;

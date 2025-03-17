@@ -1,9 +1,22 @@
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../assets/Logo.png';
 
 function Header() {
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    fetch('http://localhost:5000/api/categories')
+      .then(res => res.json())
+      .then(data => {
+        console.log('Données des catégories:', data); // Ajoute ceci pour déboguer
+        setCategories(data);
+      })
+      .catch(err => console.error('Erreur lors de la récupération des catégories:', err));
+  }, []);
+
   return (
-    <header className="background-color text-color py-3">
+    <header className="py-3">
       <div className="container d-flex justify-content-between align-items-center">
         <div className="logo-container">
           <Link to="/">
@@ -18,24 +31,19 @@ function Header() {
           <input
             type="text"
             className="form-control"
-            placeholder="Rechercher"
+            placeholder="Rechercher un artisan..."
             style={{ maxWidth: '300px' }}
           />
         </div>
         <nav>
           <ul className="nav">
-            <li className="nav-item">
-              <Link to="/entreprises/plombiers" className="nav-link text-color">Bâtiments</Link>
-            </li>
-            <li className="nav-item">
-              <Link to="/entreprises/electriciens" className="nav-link text-color">Services</Link>
-            </li>
-            <li className="nav-item">
-              <Link to="/entreprises/menuisiers" className="nav-link text-color">Fabrication</Link>
-            </li>
-            <li className="nav-item">
-              <Link to="/entreprises/menuisiers" className="nav-link text-color">Alimentation</Link>
-            </li>
+            {categories.map(category => (
+              <li key={category.id} className="nav-item">
+                <Link to={`/entreprises/${category.id}`} className="nav-link text-white">
+                  {category.nom || 'Catégorie sans nom'} {/* Utilise nom au lieu de name */}
+                </Link>
+              </li>
+            ))}
           </ul>
         </nav>
       </div>
