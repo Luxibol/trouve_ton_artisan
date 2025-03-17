@@ -1,33 +1,51 @@
-import { useParams } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { useParams, Link } from 'react-router-dom';
 
 function EntrepriseDetail() {
-  const { id } = useParams();
+  const { id } = useParams(); // Récupère l'id de l'entreprise depuis l'URL
+  const [entreprise, setEntreprise] = useState(null);
 
-  const entreprises = {
-    1: { name: 'Plomberie Dupont', specialty: 'Plomberie', rating: 5, location: 'Paris', about: 'Spécialiste en plomberie depuis 10 ans.', website: 'https://plomberiedupont.fr' },
-    2: { name: 'Électricité Martin', specialty: 'Électricité', rating: 4, location: 'Lyon', about: 'Expert en installations électriques.', website: 'https://electricitemartin.fr' },
-    3: { name: 'Menuiserie Lefèvre', specialty: 'Menuiserie', rating: 5, location: 'Marseille', about: 'Fabrication sur mesure de meubles.', website: null },
-};
+  useEffect(() => {
+    fetch(`http://localhost:5000/api/${id}`)
+      .then(res => res.json())
+      .then(data => {
+        console.log('Données de l\'entreprise:', data); // Pour déboguer
+        setEntreprise(data);
+      })
+      .catch(err => console.error('Erreur lors de la récupération des détails de l\'entreprise:', err));
+  }, [id]);
 
-  const entreprise = { name: `Entreprise ${id}`, specialty: 'Plomberie', rating: 5, location: 'Paris', about: 'Description de l\'entreprise.', website: 'https://example.com' };
+  if (!entreprise) {
+    return <div className="container mt-5">Chargement...</div>;
+  }
 
-  const renderStars = (rating) => '★'.repeat(rating) + '☆'.repeat(5 - rating);
+  if (entreprise.message === "Entreprise non trouvée") {
+    return (
+      <div className="container mt-5">
+        <h1 className="decorative-line">Entreprise non trouvée</h1>
+        <p>L'entreprise demandée n'existe pas.</p>
+        <Link to="/" className="btn btn-primary">Retour à l'accueil</Link>
+      </div>
+    );
+  }
 
   return (
-    <div>
-      <h1 className="decorative-line">{entreprise.name}</h1>
+    <div className="container mt-5">
+      <h1 className="decorative-line">{entreprise.nom}</h1>
       <div className="row">
         <div className="col-md-6">
-          <p>{entreprise.specialty}</p>
-          <p>
-            <span className="stars">{renderStars(entreprise.rating)}</span> ({entreprise.rating}/5)
-          </p>
-          <p>{entreprise.location}</p>
-          {entreprise.website && <p>Site : <a href={entreprise.website}>{entreprise.website}</a></p>}
-          <p>À propos : {entreprise.about}</p>
+          <p>{entreprise.specialite}</p>
+          <p>{[...Array(5)].map((_, i) => (
+            <span key={i} style={{ color: i < entreprise.note ? '#f5c518' : '#ccc' }}>★</span>
+          ))} ({entreprise.note}/5)</p>
+          <p>{entreprise.ville}</p>
+          {entreprise.site_web && (
+            <p><a href={entreprise.site_web} target="_blank" rel="noopener noreferrer">{entreprise.site_web}</a></p>
+          )}
+          <p><strong>A propos :</strong> {entreprise.a_propos}</p>
         </div>
         <div className="col-md-6">
-          <h2 className="decorative-line-green">Nous contacter</h2>
+          <h2 className="decorative-line-green">Contacté l'artisan</h2>
           <form>
             <div className="mb-3">
               <label htmlFor="prenom" className="form-label">Prénom</label>
