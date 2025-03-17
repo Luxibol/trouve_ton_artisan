@@ -5,6 +5,7 @@ import Home from './pages/Home';
 import EntreprisesList from './pages/EntreprisesList';
 import EntrepriseDetail from './pages/EntrepriseDetail';
 import NotFound from './pages/NotFound';
+import UnderConstruction from './pages/UnderConstruction';
 
 function App() {
   return (
@@ -15,6 +16,10 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/entreprises/:categoryId" element={<EntreprisesList />} />
           <Route path="/entreprise/:id" element={<EntrepriseDetail />} />
+          <Route path="/legal/mentions" element={<UnderConstruction />} />
+          <Route path="/legal/donnees-personnelles" element={<UnderConstruction />} />
+          <Route path="/legal/accessibilite" element={<UnderConstruction />} />
+          <Route path="/legal/cookies" element={<UnderConstruction />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>

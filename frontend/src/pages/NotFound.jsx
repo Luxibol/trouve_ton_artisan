@@ -11,7 +11,7 @@ function NotFound() {
         <p className="lead">Cette page n'existe pas !</p>
       <img
         src={notFound}
-        alt="Page non trouvée"
+        alt="Erreur 404 / Page non trouvée"
         className="img-fluid mb-4"
         style={{ maxWidth: '300px' }}
       />
