@@ -2,14 +2,14 @@ import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 
 function EntrepriseDetail() {
-  const { id } = useParams(); // Récupère l'id de l'entreprise depuis l'URL
+  const { id } = useParams();
   const [entreprise, setEntreprise] = useState(null);
 
   useEffect(() => {
     fetch(`http://localhost:5000/api/${id}`)
       .then(res => res.json())
       .then(data => {
-        console.log('Données de l\'entreprise:', data); // Pour déboguer
+        console.log('Données de l\'entreprise:', data);
         setEntreprise(data);
       })
       .catch(err => console.error('Erreur lors de la récupération des détails de l\'entreprise:', err));
@@ -42,10 +42,21 @@ function EntrepriseDetail() {
           {entreprise.site_web && (
             <p><a href={entreprise.site_web} target="_blank" rel="noopener noreferrer">{entreprise.site_web}</a></p>
           )}
-          <p><strong>A propos :</strong> {entreprise.a_propos}</p>
+          <p><strong>A propos</strong> {entreprise.a_propos}</p>
+          <Link to="/" className="btn btn-primary mt-3">Retour à l'accueil</Link>
         </div>
         <div className="col-md-6">
-          <h2 className="decorative-line-green">Contacté l'artisan</h2>
+          {entreprise.image_url && (
+            <div className="mb-4">
+              <img
+                src={entreprise.image_url}
+                alt={`${entreprise.nom} logo`}
+                className="img-fluid rounded"
+                style={{ maxHeight: '200px', width: '100%', objectFit: 'cover' }}
+              />
+            </div>
+          )}
+          <h2 className="decorative-line-green">Contacter {entreprise.nom}</h2>
           <form>
             <div className="mb-3">
               <label htmlFor="prenom" className="form-label">Prénom</label>
