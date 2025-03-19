@@ -4,6 +4,13 @@ import { useParams, Link } from 'react-router-dom';
 function EntrepriseDetail() {
   const { id } = useParams();
   const [entreprise, setEntreprise] = useState(null);
+  const [formData, setFormData] = useState({
+    prenom: '',
+    nom: '',
+    email: '',
+    message: '',
+  });
+  const [formStatus, setFormStatus] = useState(null);
 
   useEffect(() => {
     fetch(`http://localhost:5000/api/${id}`)
@@ -14,6 +21,32 @@ function EntrepriseDetail() {
       })
       .catch(err => console.error('Erreur lors de la récupération des détails de l\'entreprise:', err));
   }, [id]);
+
+  const handleChange = (e) => {
+    const { id, value } = e.target;
+    setFormData({ ...formData, [id]: value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setFormStatus(null); // Réinitialise le statut
+    try {
+      const response = await fetch(`http://localhost:5000/api/contact/${id}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+      const result = await response.json();
+      if (response.ok) {
+        setFormStatus({ type: 'success', message: 'Message envoyé avec succès !' });
+        setFormData({ prenom: '', nom: '', email: '', message: '' }); // Réinitialise le formulaire
+      } else {
+        setFormStatus({ type: 'error', message: result.message || 'Erreur lors de l\'envoi.' });
+      }
+    } catch (error) {
+      setFormStatus({ type: 'error', message: 'Erreur lors de l\'envoi du message.' });
+    }
+  };
 
   if (!entreprise) {
     return <div className="container mt-5">Chargement...</div>;
@@ -57,22 +90,59 @@ function EntrepriseDetail() {
             </div>
           )}
           <h2 className="decorative-line-green">Contacter {entreprise.nom}</h2>
-          <form>
+          {formStatus && (
+            <div className={`alert alert-${formStatus.type === 'success' ? 'success' : 'danger'} mt-3`}>
+              {formStatus.message}
+            </div>
+          )}
+          <form onSubmit={handleSubmit}>
             <div className="mb-3">
               <label htmlFor="prenom" className="form-label">Prénom</label>
-              <input type="text" className="form-control" id="prenom" placeholder="Votre prénom" />
+              <input
+                type="text"
+                className="form-control"
+                id="prenom"
+                placeholder="Votre prénom"
+                value={formData.prenom}
+                onChange={handleChange}
+                required
+              />
             </div>
             <div className="mb-3">
               <label htmlFor="nom" className="form-label">Nom</label>
-              <input type="text" className="form-control" id="nom" placeholder="Votre nom" />
+              <input
+                type="text"
+                className="form-control"
+                id="nom"
+                placeholder="Votre nom"
+                value={formData.nom}
+                onChange={handleChange}
+                required
+              />
             </div>
             <div className="mb-3">
               <label htmlFor="email" className="form-label">Email</label>
-              <input type="email" className="form-control" id="email" placeholder="Votre email" />
+              <input
+                type="email"
+                className="form-control"
+                id="email"
+                placeholder="Votre email"
+                value={formData.email}
+                onChange={handleChange}
+                required
+              />
             </div>
             <div className="mb-3">
               <label htmlFor="message" className="form-label">Message</label>
-              <textarea className="form-control" id="message" rows="3" placeholder="Votre message"></textarea>
+              <textarea
+                className="form-control"
+                id="message"
+                rows="3"
+                placeholder="Votre message"
+                value={formData.message}
+                onChange={handleChange}
+                required
+              ></textarea>
             </div>
             <button type="submit" className="btn btn-primary">Envoyer</button>
           </form>
