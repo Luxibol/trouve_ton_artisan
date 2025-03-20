@@ -8,7 +8,16 @@ const sequelize = new Sequelize(
   {
     host: process.env.DB_HOST,
     dialect: 'mysql',
+    logging: false,
   }
 );
+
+sequelize.authenticate()
+  .then(() => {
+    console.log('Connexion à la base de données réussie');
+  })
+  .catch(err => {
+    console.error('Erreur de connexion à la base de données:', err);
+  });
 
 module.exports = sequelize;

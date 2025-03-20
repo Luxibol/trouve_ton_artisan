@@ -1,7 +1,8 @@
 const express = require('express');
+const { Op } = require('sequelize');
 const Entreprise = require('../models/Entreprise');
 const Categorie = require('../models/Categorie');
-const sendEmail = require('../utils/email'); // Importe la fonction d'envoi d'email
+const sendEmail = require('../utils/email');
 const router = express.Router();
 
 // Récupérer toutes les entreprises
@@ -10,6 +11,28 @@ router.get('/', async (req, res) => {
         const entreprises = await Entreprise.findAll({ include: Categorie });
         res.json(entreprises);
     } catch (error) {
+        console.error('Erreur lors de la récupération des entreprises:', error);
+        res.status(500).json({ message: "Erreur serveur" });
+    }
+});
+
+// Nouvelle route pour rechercher par nom
+router.get('/search', async (req, res) => {
+    try {
+        const { query } = req.query;
+        if (!query) {
+            return res.json(await Entreprise.findAll({ include: Categorie }));
+        }
+
+        const entreprises = await Entreprise.findAll({
+            where: {
+                nom: { [Op.like]: `%${query}%` },
+            },
+            include: Categorie,
+        });
+        res.json(entreprises);
+    } catch (error) {
+        console.error('Erreur lors de la recherche:', error);
         res.status(500).json({ message: "Erreur serveur" });
     }
 });
@@ -23,6 +46,7 @@ router.get('/categorie/:id', async (req, res) => {
         });
         res.json(entreprises);
     } catch (error) {
+        console.error('Erreur lors de la récupération par catégorie:', error);
         res.status(500).json({ message: "Erreur serveur" });
     }
 });
@@ -36,6 +60,7 @@ router.get('/top', async (req, res) => {
         });
         res.json(entreprises);
     } catch (error) {
+        console.error('Erreur lors de la récupération des top entreprises:', error);
         res.status(500).json({ message: "Erreur serveur" });
     }
 });
@@ -46,6 +71,7 @@ router.get('/categories', async (req, res) => {
         const categories = await Categorie.findAll();
         res.json(categories);
     } catch (error) {
+        console.error('Erreur lors de la récupération des catégories:', error);
         res.status(500).json({ message: "Erreur serveur" });
     }
 });
@@ -60,6 +86,7 @@ router.get('/:id', async (req, res) => {
             res.status(404).json({ message: "Entreprise non trouvée" });
         }
     } catch (error) {
+        console.error('Erreur lors de la récupération de l’entreprise:', error);
         res.status(500).json({ message: "Erreur serveur" });
     }
 });
@@ -96,6 +123,6 @@ router.post('/contact/:id', async (req, res) => {
       console.error('Erreur détaillée:', error);
       res.status(500).json({ message: "Erreur lors de l'envoi de l'email" });
     }
-  });
+});
 
 module.exports = router;
