@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import logo from '../assets/Logo.png';
+import logo from '../assets/pictures/Logo.png';
 import { FaSearch } from 'react-icons/fa';
 
 function Header() {

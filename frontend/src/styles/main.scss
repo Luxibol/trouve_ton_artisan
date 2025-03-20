@@ -15,7 +15,48 @@ $primary: $button-bg-color;
 // Importer Bootstrap avec un espace de noms
 @use "bootstrap/scss/bootstrap" as bs;
 
-// Styles personnalisés
+// Déclaration de la police Graphik
+@font-face {
+  font-family: 'Graphik';
+  src: url('../assets/fonts/Graphik-Regular-Trial.woff2') format('woff2'),
+       url('../assets/fonts/Graphik-Regular-Trial.woff') format('woff'),
+       url('../assets/fonts/Graphik-Regular-Trial.ttf') format('truetype');
+  font-weight: 400; // Regular
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Graphik';
+  src: url('../assets/fonts/Graphik-Bold-Trial.woff2') format('woff2'),
+       url('../assets/fonts/Graphik-Bold-Trial.woff') format('woff'),
+       url('../assets/fonts/Graphik-Bold-Trial.ttf') format('truetype');
+  font-weight: 700; // Bold
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Graphik';
+  src: url('../assets/fonts/Graphik-RegularItalic-Trial.woff2') format('woff2'),
+       url('../assets/fonts/Graphik-RegularItalic-Trial.woff') format('woff'),
+       url('../assets/fonts/Graphik-RegularItalic-Trial.ttf') format('truetype');
+  font-weight: 400; // Regular
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Graphik';
+  src: url('../assets/fonts/Graphik-BoldItalic-Trial.woff2') format('woff2'),
+       url('../assets/fonts/Graphik-BoldItalic-Trial.woff') format('woff'),
+       url('../assets/fonts/Graphik-BoldItalic-Trial.ttf') format('truetype');
+  font-weight: 700; // Bold
+  font-style: italic;
+  font-display: swap;
+}
+
+// Styles personnalisés (mobile-first)
 body {
   background-color: $background-color;
   margin: 0;
@@ -24,15 +65,45 @@ body {
   align-items: center;
   min-height: 100vh;
   color: $text-color;
+  font-family: 'Graphik', Arial, sans-serif; // Applique Graphik avec Arial comme secours
+  font-size: 16px; // Taille de base pour mobile
+  font-weight: 400; // Poids par défaut : Regular
+  font-style: normal; // Style par défaut : normal
 }
 
 h1, h2, h3, h4, h5, h6 {
   color: $title-color;
+  font-size: 1.5rem; // Taille réduite pour mobile
+  font-weight: 700; // Utilise Graphik Bold pour les titres
 }
 
 header {
   background-color: $background-color;
   color: $text-color;
+  padding: 1rem;
+
+  .container {
+    flex-direction: column; // Empilé verticalement sur mobile
+    align-items: flex-start;
+  }
+
+  .logo-img {
+    height: 30px; // Taille réduite pour mobile
+  }
+
+  .search-bar {
+    max-width: 100%; // Prend toute la largeur sur mobile
+    margin: 1rem 0;
+  }
+
+  .nav {
+    flex-direction: column;
+    width: 100%;
+
+    .nav-item {
+      margin: 0.5rem 0;
+    }
+  }
 }
 
 .nav-link {
@@ -77,34 +148,41 @@ footer {
 
 // Classe pour l'image du logo
 .logo-img {
-  height: 40px;
+  height: 30px; // Déjà défini pour mobile ci-dessus
 }
 
 .card {
-  padding: 2em;
+  padding: 1em; // Réduit pour mobile
   background-color: white;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  width: 100%; 
+  width: 100%;
 
   .card-body {
-    padding: 1.5rem;
+    padding: 1rem; // Réduit pour mobile
   }
 
   .card-title {
-    font-size: 1.25rem;
-    margin-bottom: 0.75rem;
+    font-size: 1.1rem; // Réduit pour mobile
+    margin-bottom: 0.5rem;
   }
 
   .card-text {
     color: $text-color;
-    font-size: 1rem;
-    margin-bottom: 1rem;
+    font-size: 0.9rem; // Réduit pour mobile
+    margin-bottom: 0.75rem;
 
     .stars {
       color: #f5c518; // Couleur des étoiles remplies
     }
   }
+}
+
+// Utilisation de l'italique
+.card-text em,
+.card-text i,
+.specialite {
+  font-style: italic; // Utilise Graphik Regular Italic ou Bold Italic selon le contexte
 }
 
 .read-the-docs {
@@ -146,7 +224,7 @@ footer {
   position: relative;
   display: flex;
   align-items: center;
-  max-width: 300px; 
+  max-width: 100%; // Ajusté pour mobile-first
 
   .search-input {
     border: none;
@@ -201,15 +279,16 @@ footer {
   position: relative;
   display: flex;
   align-items: center;
-  max-width: 600px;
+  max-width: 100%; // Ajusté pour mobile-first
 
   .search-input-results {
     border: 1px solid #007bff;
     border-radius: 50px;
-    padding: 10px 20px;
+    padding: 8px 15px; // Réduit pour mobile
     background-color: white;
     color: $text-color;
     box-shadow: none;
+    font-size: 0.9rem; // Réduit pour mobile
 
     &:focus {
       outline: 2px solid #ffd700;
@@ -219,6 +298,69 @@ footer {
 
     &::placeholder {
       color: #999;
+    }
+  }
+}
+
+// Media queries pour écrans plus grands (PC)
+@media (min-width: 768px) {
+  body {
+    font-size: 18px; // Taille augmentée pour PC
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-size: 2rem; // Taille augmentée pour PC
+  }
+
+  header {
+    padding: 1.5rem;
+
+    .container {
+      flex-direction: row; // Aligné horizontalement sur PC
+      align-items: center;
+    }
+
+    .logo-img {
+      height: 40px; // Taille augmentée pour PC
+    }
+
+    .search-bar {
+      max-width: 300px; // Largeur limitée sur PC
+      margin: 0;
+    }
+
+    .nav {
+      flex-direction: row;
+
+      .nav-item {
+        margin: 0 1rem;
+      }
+    }
+  }
+
+  .card {
+    padding: 2em; // Augmenté pour PC
+
+    .card-body {
+      padding: 1.5rem; // Augmenté pour PC
+    }
+
+    .card-title {
+      font-size: 1.25rem; // Augmenté pour PC
+    }
+
+    .card-text {
+      font-size: 1rem; // Augmenté pour PC
+      margin-bottom: 1rem;
+    }
+  }
+
+  .search-bar-results {
+    max-width: 600px; // Largeur limitée sur PC
+
+    .search-input-results {
+      padding: 10px 20px; // Augmenté pour PC
+      font-size: 1rem; // Augmenté pour PC
     }
   }
 }

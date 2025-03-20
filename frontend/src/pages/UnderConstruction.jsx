@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import construct from '../assets/construct.jpg';
+import construct from '../assets/pictures/construct.jpg';
 
 function UnderConstruction() {
   return (
