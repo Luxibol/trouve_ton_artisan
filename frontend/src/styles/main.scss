@@ -1,123 +1,27 @@
-// Couleurs comme variables Sass
-$background-color: #f1f8fc;
-$footer-text-color: #f1f8fc;
-$button-text-color: #f1f8fc;
-$footer-bg-color: #0074c7;
-$button-bg-color: #0074c7;
-$title-color: #00497c;
-$text-color: #384050;
-$accent-red: #cd2c2e;
-$accent-green: #82b864;
-
-// Personnaliser Bootstrap
-$primary: $button-bg-color;
-
 // Importer Bootstrap avec un espace de noms
 @use "bootstrap/scss/bootstrap" as bs;
 
-// Importer Source Sans Pro depuis Google Fonts
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&subset=latin-ext&display=swap');
+// Importer les abstracts
+@import 'abstracts/variables';
+@import 'abstracts/fonts';
 
-// Déclaration de la police Graphik
-@font-face {
-  font-family: 'Graphik';
-  src: url('../assets/fonts/Graphik-Regular.woff2') format('woff2'),
-       url('../assets/fonts/Graphik-Regular.woff') format('woff'),
-       url('../assets/fonts/GraphikTrial-Regular.otf') format('opentype'),
-       url('../assets/fonts/GraphikTrial-Regular.ttf') format('truetype');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
+// Importer les styles globaux
+@import 'global';
 
-@font-face {
-  font-family: 'Graphik';
-  src: url('../assets/fonts/Graphik-Bold.woff2') format('woff2'),
-       url('../assets/fonts/Graphik-Bold.woff') format('woff'),
-       url('../assets/fonts/GraphikTrial-Bold.otf') format('opentype'),
-       url('../assets/fonts/GraphikTrial-Bold.ttf') format('truetype');
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
+// Importer les styles des composants
+@import 'components/card';
+@import 'components/footer';
+@import 'components/header';
 
-@font-face {
-  font-family: 'Graphik';
-  src: url('../assets/fonts/Graphik-RegularItalic.woff2') format('woff2'),
-       url('../assets/fonts/Graphik-RegularItalic.woff') format('woff'),
-       url('../assets/fonts/GraphikTrial-RegularItalic.otf') format('opentype'),
-       url('../assets/fonts/GraphikTrial-RegularItalic.ttf') format('truetype');
-  font-weight: 400;
-  font-style: italic;
-  font-display: swap;
-}
+// Importer les styles des pages
+@import 'pages/entreprise-detail';
+@import 'pages/entreprises-list';
+@import 'pages/home';
+@import 'pages/not-found';
+@import 'pages/search-results';
+@import 'pages/under-construction';
 
-// Styles personnalisés (mobile-first)
-body {
-  background-color: $background-color;
-  margin: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  color: $text-color;
-  font-family: 'Graphik', 'Poppins', Arial, sans-serif; // Graphik est la police principale, Poppins en secours
-  font-size: 16px;
-  font-weight: 400;
-  font-style: normal;
-  line-height: 1.5;
-}
-
-h1, h2, h3, h4, h5, h6 {
-  color: $title-color;
-  font-size: 1.5rem; // Taille réduite pour mobile
-  font-weight: 700; // Utilise Bold pour les titres
-  line-height: 1.2; // Ajouté pour correspondre au site de la région
-}
-
-
-header {
-  background-color: $background-color;
-  color: $text-color;
-  padding: 1rem;
-
-  .container {
-    flex-direction: column; // Empilé verticalement sur mobile
-    align-items: flex-start;
-  }
-
-  .logo-img {
-    height: 30px; // Taille réduite pour mobile
-  }
-
-  .search-bar {
-    max-width: 100%; // Prend toute la largeur sur mobile
-    margin: 1rem 0;
-  }
-
-  .nav {
-    flex-direction: column;
-    width: 100%;
-
-    .nav-item {
-      margin: 0.5rem 0;
-    }
-  }
-}
-
-.nav-link {
-  color: $text-color !important;
-  &:hover {
-    color: darken($text-color, 10%) !important;
-  }
-}
-
-footer {
-  background-color: $footer-bg-color;
-  color: $footer-text-color;
-  padding: 1rem;
-}
-
+// Styles globaux supplémentaires
 .btn-primary {
   background-color: $button-bg-color;
   border-color: $button-bg-color;
@@ -143,46 +47,6 @@ footer {
   &.react:hover {
     filter: drop-shadow(0 0 2em #61dafbaa);
   }
-}
-
-// Classe pour l'image du logo
-.logo-img {
-  height: 30px; // Déjà défini pour mobile ci-dessus
-}
-
-.card {
-  padding: 1em; // Réduit pour mobile
-  background-color: white;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  width: 100%;
-
-  .card-body {
-    padding: 1rem; // Réduit pour mobile
-  }
-
-  .card-title {
-    font-size: 1.1rem; // Réduit pour mobile
-    margin-bottom: 0.5rem;
-  }
-
-  .card-text {
-    color: $text-color;
-    font-size: 0.9rem; // Réduit pour mobile
-    margin-bottom: 0.75rem;
-    line-height: 1.5;
-
-    .stars {
-      color: #f5c518; // Couleur des étoiles remplies
-    }
-  }
-}
-
-// Utilisation de l'italique
-.card-text em,
-.card-text i,
-.specialite {
-  font-style: italic; // Utilise Regular Italic selon le contexte
 }
 
 .read-the-docs {
@@ -216,151 +80,5 @@ footer {
     width: 40px;
     height: 4px;
     background-color: $accent-green;
-  }
-}
-
-// Styles pour la barre de recherche du Header
-.search-bar {
-  position: relative;
-  display: flex;
-  align-items: center;
-  max-width: 100%; // Ajusté pour mobile-first
-
-  .search-input {
-    border: none;
-    border-bottom: 1px solid #007bff;
-    border-right: 1px solid #007bff;
-    padding-right: 40px;
-    background-color: $background-color;
-    color: $text-color;
-    border-radius: 0 !important;
-    box-shadow: none;
-
-    &:focus {
-      outline: 2px solid #ffd700;
-      outline-offset: 0;
-      border-bottom: 1px solid #007bff;
-      border-right: 1px solid #007bff;
-      box-shadow: none;
-    }
-
-    &::placeholder {
-      color: #999;
-    }
-  }
-
-  .search-button {
-    background: none;
-    border: none;
-    position: absolute;
-    right: 10px;
-    cursor: pointer;
-
-    svg {
-      color: #007bff;
-    }
-
-    &:hover {
-      background: $title-color !important;
-      border-radius: 50px;
-      svg {
-        color: $footer-text-color !important;
-      }
-    }
-
-    &:focus {
-      outline: none;
-    }
-  }
-}
-
-// Styles pour la barre de recherche de SearchResults
-.search-bar-results {
-  position: relative;
-  display: flex;
-  align-items: center;
-  max-width: 100%; // Ajusté pour mobile-first
-
-  .search-input-results {
-    border: 1px solid #007bff;
-    border-radius: 50px;
-    padding: 8px 15px; // Réduit pour mobile
-    background-color: white;
-    color: $text-color;
-    box-shadow: none;
-    font-size: 0.9rem; // Réduit pour mobile
-
-    &:focus {
-      outline: 2px solid #ffd700;
-      outline-offset: 0;
-      border: 1px solid #007bff;
-    }
-
-    &::placeholder {
-      color: #999;
-    }
-  }
-}
-
-// Media queries pour écrans plus grands (PC)
-@media (min-width: 768px) {
-  body {
-    font-size: 18px; // Taille augmentée pour PC
-  }
-
-  h1, h2, h3, h4, h5, h6 {
-    font-size: 2rem; // Taille augmentée pour PC
-  }
-
-  header {
-    padding: 1.5rem;
-
-    .container {
-      flex-direction: row; // Aligné horizontalement sur PC
-      align-items: center;
-    }
-
-    .logo-img {
-      height: 40px; // Taille augmentée pour PC
-    }
-
-    .search-bar {
-      max-width: 300px; // Largeur limitée sur PC
-      margin: 0;
-    }
-
-    .nav {
-      flex-direction: row;
-
-      .nav-item {
-        margin: 0 1rem;
-      }
-    }
-  }
-
-  .card {
-    padding: 2em; // Augmenté pour PC
-
-    .card-body {
-      padding: 1.5rem; // Augmenté pour PC
-    }
-
-    .card-title {
-      font-size: 1.25rem; // Augmenté pour PC
-    }
-
-    .card-text {
-      font-size: 1rem; // Augmenté pour PC
-      margin-bottom: 1rem;
-    }
-  }
-
-  .search-bar-results {
-    max-width: 600px; // Largeur limitée sur PC
-
-    .search-input-results {
-      padding: 10px 20px; // Augmenté pour PC
-      font-size: 1rem; // Augmenté pour PC
-    }
   }
 }

@@ -1,0 +1,216 @@
+header {
+    background-color: $background-color;
+    color: $text-color;
+    padding: 1rem 0;
+    width: 100%;
+    margin: 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: relative;
+  
+    .container-fluid {
+      width: 100%;
+      margin: 0;
+    }
+  
+    .logo-container {
+      .logo-img {
+        height: 30px;
+        width: auto;
+        max-width: 100%;
+        display: block;
+      }
+    }
+  
+    .search-bar-container {
+      width: 100%;
+    }
+  
+    .search-bar {
+      position: relative;
+      display: flex;
+      align-items: center;
+      max-width: 100%;
+  
+      .search-icon-button {
+        background: none;
+        border: none;
+        color: $text-color;
+        font-size: 1.5rem;
+        display: inline-block;
+      }
+  
+      .search-input-container {
+        position: relative;
+        width: 100%;
+      }
+  
+      .search-input {
+        border: none;
+        border-bottom: 1px solid #007bff;
+        border-right: 1px solid #007bff;
+        padding-right: 40px;
+        background-color: transparent;
+        color: $text-color;
+        border-radius: 0 !important;
+        box-shadow: none;
+  
+        &:focus {
+          outline: 2px solid #ffd700;
+          outline-offset: 0;
+          border-bottom: 1px solid #007bff;
+          border-right: 1px solid #007bff;
+          box-shadow: none;
+        }
+  
+        &::placeholder {
+          color: $text-color;
+          opacity: 0.7;
+        }
+      }
+  
+      .search-button {
+        background: none;
+        border: none;
+        position: absolute;
+        right: 10px;
+        cursor: pointer;
+  
+        svg {
+          color: #007bff;
+        }
+  
+        &:hover {
+          background: $title-color !important;
+          border-radius: 50px;
+          svg {
+            color: $footer-text-color !important;
+          }
+        }
+  
+        &:focus {
+          outline: none;
+        }
+      }
+  
+      .close-search-button {
+        background: none;
+        border: none;
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: $text-color;
+      }
+    }
+  
+    .search-bar-mobile {
+      background-color: $background-color;
+      padding: 0.5rem 0;
+      width: 100%;
+      border-top: 1px solid #e0e0e0;
+      display: block;
+    }
+  
+    .category-nav {
+      &.d-md-none {
+        display: none;
+        width: 100%;
+        background-color: $background-color;
+  
+        &.open {
+          display: block;
+        }
+  
+        .nav {
+          flex-direction: column;
+          width: 100%;
+          background-color: $background-color;
+  
+          .nav-item {
+            margin: 0.5rem 0;
+            text-align: center;
+          }
+        }
+      }
+    }
+  
+    .burger-menu-button {
+      background: none;
+      border: none;
+      color: $text-color;
+      font-size: 1.5rem;
+      display: inline-block;
+    }
+  }
+  
+  .nav-link {
+    color: $text-color !important;
+    &:hover {
+      color: darken($text-color, 10%) !important;
+    }
+  }
+  
+  @media (min-width: 768px) {
+    header {
+      padding: 1.5rem 0;
+  
+      .logo-container {
+        .logo-img {
+          height: 60px;
+          width: auto;
+          max-width: 100%;
+        }
+      }
+  
+      .search-bar-container {
+        max-width: 400px;
+        margin: 0;
+      }
+  
+      .category-nav {
+        .nav {
+          flex-direction: row;
+  
+          .nav-item {
+            margin: 0 0 0 1rem;
+          }
+        }
+      }
+    }
+  }
+  
+  @media (max-width: 576px) {
+    header {
+      .logo-container {
+        .logo-img {
+          height: 30px;
+        }
+      }
+    }
+  }
+  
+  @media (min-width: 992px) {
+    header {
+      .logo-container {
+        .logo-img {
+          height: 80px;
+        }
+      }
+  
+      .container-fluid {
+        padding-left: 2rem;
+        padding-right: 2rem;
+      }
+  
+      .row {
+        margin-left: -1rem;
+        margin-right: -1rem;
+      }
+  
+      .col-md-3,
+      .col-md-9 {
+        padding-left: 1rem;
+        padding-right: 1rem;
+      }
+    }
+  }

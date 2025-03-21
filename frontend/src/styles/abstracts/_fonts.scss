@@ -1,0 +1,36 @@
+// Importer Poppins depuis Google Fonts pour les caractères non pris en compte par Graphik
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&subset=latin-ext&display=swap');
+
+// Déclaration de la police Graphik
+@font-face {
+  font-family: 'Graphik';
+  src: url('../assets/fonts/Graphik-Regular.woff2') format('woff2'),
+       url('../assets/fonts/Graphik-Regular.woff') format('woff'),
+       url('../assets/fonts/GraphikTrial-Regular.otf') format('opentype'),
+       url('../assets/fonts/GraphikTrial-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Graphik';
+  src: url('../assets/fonts/Graphik-Bold.woff2') format('woff2'),
+       url('../assets/fonts/Graphik-Bold.woff') format('woff'),
+       url('../assets/fonts/GraphikTrial-Bold.otf') format('opentype'),
+       url('../assets/fonts/GraphikTrial-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Graphik';
+  src: url('../assets/fonts/Graphik-RegularItalic.woff2') format('woff2'),
+       url('../assets/fonts/Graphik-RegularItalic.woff') format('woff'),
+       url('../assets/fonts/GraphikTrial-RegularItalic.otf') format('opentype'),
+       url('../assets/fonts/GraphikTrial-RegularItalic.ttf') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
