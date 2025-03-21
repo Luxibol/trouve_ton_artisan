@@ -69,8 +69,9 @@ function EntrepriseDetail() {
         <div className="col-md-6">
           <p>{entreprise.specialite}</p>
           <p>{[...Array(5)].map((_, i) => (
-            <span key={i} style={{ color: i < entreprise.note ? '#f5c518' : '#ccc' }}>★</span>
-          ))} ({entreprise.note}/5)</p>
+              <span key={i} className={i < entreprise.note ? 'text-warning' : 'text-muted'}>★</span>
+            ))} ({entreprise.note}/5)
+            </p>
           <p>{entreprise.ville}</p>
           {entreprise.site_web && (
             <p><a href={entreprise.site_web} target="_blank" rel="noopener noreferrer">{entreprise.site_web}</a></p>
