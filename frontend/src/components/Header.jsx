@@ -14,7 +14,7 @@ function Header() {
     fetch('http://localhost:5000/api/categories')
       .then(res => res.json())
       .then(data => {
-        console.log('Categories fetched:', data); // Ajout pour déboguer
+        console.log('Categories fetched:', data); 
         setCategories(data);
       })
       .catch(err => console.error('Erreur lors de la récupération des catégories:', err));

@@ -1,52 +1,7 @@
 .card {
-    padding: 1em;
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    width: 100%;
-  
-    .card-body {
-      padding: 1rem;
-    }
-  
-    .card-title {
-      font-size: 1.1rem;
-      margin-bottom: 0.5rem;
-    }
-  
     .card-text {
-      color: $text-color;
-      font-size: 0.9rem;
-      margin-bottom: 0.75rem;
-      line-height: 1.5;
-  
       .stars {
-        color: #f5c518;
-      }
-    }
-  }
-  
-  .card-text em,
-  .card-text i,
-  .specialite {
-    font-style: italic;
-  }
-  
-  @media (min-width: 768px) {
-    .card {
-      padding: 2em;
-  
-      .card-body {
-        padding: 1.5rem;
-      }
-  
-      .card-title {
-        font-size: 1.25rem;
-      }
-  
-      .card-text {
-        font-size: 1rem;
-        margin-bottom: 1rem;
+        color: #f5c518; // Garder la couleur des étoiles
       }
     }
   }
