@@ -15,43 +15,39 @@ $primary: $button-bg-color;
 // Importer Bootstrap avec un espace de noms
 @use "bootstrap/scss/bootstrap" as bs;
 
+// Importer Source Sans Pro depuis Google Fonts
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&subset=latin-ext&display=swap');
+
 // Déclaration de la police Graphik
 @font-face {
   font-family: 'Graphik';
-  src: url('../assets/fonts/Graphik-Regular-Trial.woff2') format('woff2'),
-       url('../assets/fonts/Graphik-Regular-Trial.woff') format('woff'),
-       url('../assets/fonts/Graphik-Regular-Trial.ttf') format('truetype');
-  font-weight: 400; // Regular
+  src: url('../assets/fonts/Graphik-Regular.woff2') format('woff2'),
+       url('../assets/fonts/Graphik-Regular.woff') format('woff'),
+       url('../assets/fonts/GraphikTrial-Regular.otf') format('opentype'),
+       url('../assets/fonts/GraphikTrial-Regular.ttf') format('truetype');
+  font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
   font-family: 'Graphik';
-  src: url('../assets/fonts/Graphik-Bold-Trial.woff2') format('woff2'),
-       url('../assets/fonts/Graphik-Bold-Trial.woff') format('woff'),
-       url('../assets/fonts/Graphik-Bold-Trial.ttf') format('truetype');
-  font-weight: 700; // Bold
+  src: url('../assets/fonts/Graphik-Bold.woff2') format('woff2'),
+       url('../assets/fonts/Graphik-Bold.woff') format('woff'),
+       url('../assets/fonts/GraphikTrial-Bold.otf') format('opentype'),
+       url('../assets/fonts/GraphikTrial-Bold.ttf') format('truetype');
+  font-weight: 700;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
   font-family: 'Graphik';
-  src: url('../assets/fonts/Graphik-RegularItalic-Trial.woff2') format('woff2'),
-       url('../assets/fonts/Graphik-RegularItalic-Trial.woff') format('woff'),
-       url('../assets/fonts/Graphik-RegularItalic-Trial.ttf') format('truetype');
-  font-weight: 400; // Regular
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Graphik';
-  src: url('../assets/fonts/Graphik-BoldItalic-Trial.woff2') format('woff2'),
-       url('../assets/fonts/Graphik-BoldItalic-Trial.woff') format('woff'),
-       url('../assets/fonts/Graphik-BoldItalic-Trial.ttf') format('truetype');
-  font-weight: 700; // Bold
+  src: url('../assets/fonts/Graphik-RegularItalic.woff2') format('woff2'),
+       url('../assets/fonts/Graphik-RegularItalic.woff') format('woff'),
+       url('../assets/fonts/GraphikTrial-RegularItalic.otf') format('opentype'),
+       url('../assets/fonts/GraphikTrial-RegularItalic.ttf') format('truetype');
+  font-weight: 400;
   font-style: italic;
   font-display: swap;
 }
@@ -65,17 +61,20 @@ body {
   align-items: center;
   min-height: 100vh;
   color: $text-color;
-  font-family: 'Graphik', Arial, sans-serif; // Applique Graphik avec Arial comme secours
-  font-size: 16px; // Taille de base pour mobile
-  font-weight: 400; // Poids par défaut : Regular
-  font-style: normal; // Style par défaut : normal
+  font-family: 'Graphik', 'Poppins', Arial, sans-serif; // Graphik est la police principale, Poppins en secours
+  font-size: 16px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 1.5;
 }
 
 h1, h2, h3, h4, h5, h6 {
   color: $title-color;
   font-size: 1.5rem; // Taille réduite pour mobile
-  font-weight: 700; // Utilise Graphik Bold pour les titres
+  font-weight: 700; // Utilise Bold pour les titres
+  line-height: 1.2; // Ajouté pour correspondre au site de la région
 }
+
 
 header {
   background-color: $background-color;
@@ -171,6 +170,7 @@ footer {
     color: $text-color;
     font-size: 0.9rem; // Réduit pour mobile
     margin-bottom: 0.75rem;
+    line-height: 1.5;
 
     .stars {
       color: #f5c518; // Couleur des étoiles remplies
@@ -182,7 +182,7 @@ footer {
 .card-text em,
 .card-text i,
 .specialite {
-  font-style: italic; // Utilise Graphik Regular Italic ou Bold Italic selon le contexte
+  font-style: italic; // Utilise Regular Italic selon le contexte
 }
 
 .read-the-docs {
