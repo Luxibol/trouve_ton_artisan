@@ -14,7 +14,7 @@ function Header() {
     fetch('http://localhost:5000/api/categories')
       .then(res => res.json())
       .then(data => {
-        console.log('Categories fetched:', data); 
+        console.log('Categories fetched:', data);
         setCategories(data);
       })
       .catch(err => console.error('Erreur lors de la récupération des catégories:', err));
@@ -35,101 +35,80 @@ function Header() {
     }
   };
 
-  // Ajout d'un message de débogage pour vérifier que le composant est rendu
-  console.log('Header rendered', { isSearchOpen, isMenuOpen, categories });
-
   return (
-    <header className="header-bg-color py-3">
-      <div className="container-fluid px-0">
-        {/* Section Logo et Menu Burger/Search sur mobile */}
-        <div className="d-flex justify-content-between align-items-center px-3 d-md-none">
-          <div className="logo-container">
-            <Link to="/">
-              <img src={logo} alt="Trouve Ton Artisan Logo" className="logo-img" />
-            </Link>
-          </div>
-          <div className="d-flex align-items-center">
-            {isSearchOpen ? (
-              <div className="search-input-container w-100 position-relative">
-                <input
-                  type="text"
-                  className="form-control search-input"
-                  placeholder="Rechercher"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  onKeyPress={handleKeyPress}
-                  autoFocus
-                />
-                <button onClick={() => setIsSearchOpen(false)} className="close-search-button">
-                  <FaTimes />
-                </button>
-              </div>
-            ) : (
-              <button onClick={() => setIsSearchOpen(true)} className="search-icon-button me-3">
-                <FaSearch />
-              </button>
-            )}
+    <header className="bg-white shadow py-3">
+      <div className="container-fluid px-3 px-lg-5">
+        {/* Mobile: Logo, Search Icon, and Burger Menu */}
+        <div className="d-flex justify-content-between align-items-center d-md-none">
+          <Link to="/">
+            <img src={logo} alt="Trouve Ton Artisan Logo" className="logo-img" />
+          </Link>
+          <div className="d-flex align-items-center gap-3">
             <button
-              className="burger-menu-button"
+              onClick={() => setIsSearchOpen(!isSearchOpen)}
+              className="btn p-0"
+              aria-label={isSearchOpen ? "Fermer la recherche" : "Ouvrir la recherche"}
+            >
+              {isSearchOpen ? <FaTimes /> : <FaSearch />}
+            </button>
+            <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="btn p-0"
+              aria-label={isMenuOpen ? "Fermer le menu" : "Ouvrir le menu"}
             >
               {isMenuOpen ? <FaTimes /> : <FaBars />}
             </button>
           </div>
         </div>
 
-        {/* Barre de recherche mobile (sous le header) */}
+        {/* Mobile: Search Bar */}
         {isSearchOpen && (
-          <div className="d-md-none search-bar-mobile px-3 mt-3">
-            <div className="search-bar d-flex align-items-center">
+          <div className="d-md-none mt-3 border-top pt-3">
+            <div className="input-group">
               <input
                 type="text"
-                className="form-control search-input"
+                className="form-control"
                 placeholder="Rechercher"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 onKeyPress={handleKeyPress}
                 autoFocus
               />
-              <button onClick={handleSearch} className="search-button">
+              <button onClick={handleSearch} className="btn btn-outline-primary">
                 <FaSearch />
               </button>
             </div>
           </div>
         )}
 
-        {/* Section Barre de recherche et Navigation sur desktop */}
-        <div className="row d-none d-md-flex align-items-center px-3">
+        {/* Desktop: Logo, Search Bar, and Navigation */}
+        <div className="row d-none d-md-flex align-items-center">
           <div className="col-md-3">
-            <div className="logo-container">
-              <Link to="/">
-                <img src={logo} alt="Trouve Ton Artisan Logo" className="logo-img" />
-              </Link>
-            </div>
+            <Link to="/">
+              <img src={logo} alt="Trouve Ton Artisan Logo" className="logo-img" />
+            </Link>
           </div>
           <div className="col-md-9 d-flex justify-content-end">
-            <div className="d-flex flex-column align-items-end">
-              <div className="search-bar-container mt-3">
-                <div className="search-bar d-flex align-items-center">
-                  <input
-                    type="text"
-                    className="form-control search-input"
-                    placeholder="Rechercher"
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    onKeyPress={handleKeyPress}
-                  />
-                  <button onClick={handleSearch} className="search-button">
-                    <FaSearch />
-                  </button>
-                </div>
+            <div className="d-flex flex-column align-items-end gap-3">
+              <div className="input-group" style={{ maxWidth: '400px' }}>
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="Rechercher"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  onKeyPress={handleKeyPress}
+                />
+                <button onClick={handleSearch} className="btn btn-outline-primary">
+                  <FaSearch />
+                </button>
               </div>
-              <nav className="category-nav mt-3">
+              <nav>
                 <ul className="nav">
                   {categories.length > 0 ? (
                     categories.map(category => (
                       <li key={category.id} className="nav-item">
-                        <Link to={`/entreprises/${category.id}`} className="nav-link">
+                        <Link to={`/entreprises/${category.id}`} className="nav-link text-dark">
                           {category.nom || 'Catégorie sans nom'}
                         </Link>
                       </li>
@@ -143,13 +122,13 @@ function Header() {
           </div>
         </div>
 
-        {/* Navigation des catégories sur mobile (menu burger) */}
-        <nav className={`category-nav d-md-none ${isMenuOpen ? 'open' : ''}`}>
+        {/* Mobile: Burger Menu */}
+        <nav className={`d-md-none ${isMenuOpen ? 'd-block' : 'd-none'} mt-3 border-top pt-3`}>
           <ul className="nav flex-column">
             {categories.length > 0 ? (
               categories.map(category => (
                 <li key={category.id} className="nav-item">
-                  <Link to={`/entreprises/${category.id}`} className="nav-link">
+                  <Link to={`/entreprises/${category.id}`} className="nav-link text-dark">
                     {category.nom || 'Catégorie sans nom'}
                   </Link>
                 </li>
