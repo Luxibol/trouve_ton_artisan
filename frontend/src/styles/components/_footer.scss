@@ -1,3 +1,29 @@
+// Footer
 footer {
-  // Plus besoin de styles personnalisés pour l'instant
+  background-color: $footer-bg-color;
+  color: $light-text-color;
+
+  // Logo dans le footer
+  .logo-footer {
+    height: 150px;
+  }
+
+  // Pour les écrans plus grands (PC)
+  @media (min-width: 992px) {
+    .top-n5 {
+      top: -2rem;
+    }
+
+    // Ajuster la taille du logo sur les grands écrans (PC)
+    .logo-footer {
+      height: 180px;
+    }
+  }
+
+  // Ajustement de la taille du logo pour les tablettes
+  @media (min-width: 768px) and (max-width: 991px) {
+    .logo-footer {
+      height: 120px;
+    }
+  }
 }
