@@ -1,23 +1,129 @@
+// Header
 header {
-  .logo-img {
-    height: 30px;
-    width: auto;
-    max-width: 100%;
-  }
-}
+  background-color: $background-color;
 
-@media (min-width: 768px) {
-  header {
-    .logo-img {
-      height: 60px;
+  // Logo
+  .logo-img {
+    height: auto;
+    width: 30vw; // Mobile et tablette : 30% de la largeur de l'écran
+    max-width: 100%;
+
+    @media (min-width: 992px) { // PC uniquement
+      width: 10vw;
     }
   }
-}
 
-@media (min-width: 992px) {
-  header {
-    .logo-img {
-      height: 80px;
+  // Barre de recherche
+  .search-wrapper {
+    position: relative;
+  }
+
+  .form-control {
+    border: none;
+    border-bottom: 1px solid $primary;
+    border-right: 1px solid $primary;
+    border-radius: 0;
+    background-color: transparent;
+    color: $text-color;
+
+    &:focus {
+      outline: 2px solid #ffd700;
+      outline-offset: 0;
+      border-bottom: 1px solid $primary;
+      border-right: 1px solid $primary;
+      box-shadow: none;
+    }
+
+    &::placeholder {
+      color: $text-color;
+      opacity: 0.7;
+    }
+  }
+
+  // Icône de recherche
+  .search-icon {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    color: $button-bg-color;
+    font-size: 1.2rem;
+    background: #ffffff;
+    border-radius: 50%;
+    border: none;
+    padding: 10px;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      color: #ffffff;
+      background-color: $title-color !important;
+    }
+
+    svg {
+      color: inherit;
+    }
+  }
+
+  // Boutons de recherche et du menu burger
+  .search-icon-button,
+  .burger-menu-button {
+    color: $primary;
+    font-size: 1.5rem;
+  }
+
+  // Liens de navigation
+  .nav-link {
+    position: relative;
+    color: $text-color;
+    transition: color 0.3s ease;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background-color: $text-color;
+      transition: width 0.3s ease, left 0.3s ease;
+      transform: translateX(-50%);
+    }
+
+    &:hover {
+      color: darken($text-color, 10%) !important;
+
+      &::after {
+        width: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+    }
+  }
+
+  // Lien sélectionné
+  .nav-link.selected {
+    color: $text-color;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 50%;
+      width: 100%;
+      height: 2px;
+      background-color: $text-color;
+      transform: translateX(-50%);
+    }
+  }
+
+  // Ecrans mobiles et tablettes
+  @media (max-width: 991px) { 
+    .nav-link.selected {
+      background-color: $input-bg-color;
     }
   }
 }

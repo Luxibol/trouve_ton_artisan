@@ -12,6 +12,7 @@ function EntrepriseDetail() {
   });
   const [formStatus, setFormStatus] = useState(null);
 
+  // Récupère les détails de l'entreprise depuis l'API lorsque l'ID change
   useEffect(() => {
     fetch(`http://localhost:5000/api/${id}`)
       .then(res => res.json())
@@ -27,6 +28,7 @@ function EntrepriseDetail() {
     setFormData({ ...formData, [id]: value });
   };
 
+  // Envoie les données du formulaire à l'API et gère les succès ou erreurs
   const handleSubmit = async (e) => {
     e.preventDefault();
     setFormStatus(null); // Réinitialise le statut
@@ -44,14 +46,17 @@ function EntrepriseDetail() {
         setFormStatus({ type: 'error', message: result.message || 'Erreur lors de l\'envoi.' });
       }
     } catch (error) {
+      console.error('Erreur lors de l\'envoi du message:', error); // Ajout pour déboguer
       setFormStatus({ type: 'error', message: 'Erreur lors de l\'envoi du message.' });
     }
   };
 
+  // Si les données de l'entreprise ne sont pas encore chargées, affiche un message de chargement
   if (!entreprise) {
     return <div className="container mt-5">Chargement...</div>;
   }
 
+  // Si l'entreprise n'existe pas, affiche un message d'erreur avec un lien de retour
   if (entreprise.message === "Entreprise non trouvée") {
     return (
       <div className="container mt-5">
@@ -96,6 +101,7 @@ function EntrepriseDetail() {
               {formStatus.message}
             </div>
           )}
+          {/* Formulaire pour contacter l'entreprise */}
           <form onSubmit={handleSubmit}>
             <div className="mb-3">
               <label htmlFor="prenom" className="form-label">Prénom</label>
