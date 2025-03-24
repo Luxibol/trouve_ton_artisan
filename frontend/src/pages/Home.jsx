@@ -23,11 +23,11 @@ function Home() {
 
       {/* Version PC Tablette*/}
       <div className="row align-items-start d-none d-md-flex mt-md-4 mb-5">
-        <div className="col-md-6 image-container pe-5 pe-md-3">
+        <div className="col-md-6 image-container pe-lg-5 pe-md-3">
           {/* Image */}
           <img src={artisan} alt="Illustration Artisan" className="img-fluid home-img"/>
         </div>
-        <div className="col-md-6 d-flex flex-column justify-content-start ps-5 ps-md-3 pt-2">
+        <div className="col-md-6 d-flex flex-column justify-content-start ps-lg-5 ps-md-3 pt-2 ">
           {/* Texte avec titre et liste */}
           <h1 className="decorative-line">Comment trouver mon artisan ?</h1>
           <ol className='mt-2'>
@@ -40,7 +40,7 @@ function Home() {
       </div>
 
       {/* Version Mobile */}
-      <div className="row d-md-none mt-3 mb-5">
+      <div className="row d-md-none mt-3 mb-4">
         {/* Titre */}
         <div className="col-12">
           <h1 className="decorative-line">Comment trouver mon artisan ?</h1>
