@@ -24,3 +24,12 @@
   color: $accent-red;
 }
 
+// je ne sais pas si j'emploi ça ou non (sur le site d'on je dois m'inspiré c'est comme ça)
+.link-custom {
+  color: inherit;
+  transition: color 0.3s ease; /* Transition douce pour la couleur */
+
+  &:hover {
+    color: $title-color;
+  }
+}

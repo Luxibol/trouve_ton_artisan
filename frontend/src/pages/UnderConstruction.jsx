@@ -6,7 +6,7 @@ function UnderConstruction() {
     <div className="container text-start">
       {/* Lien Accueil au-dessus du titre */}
       <div className="mb-4">
-        <Link to="/">Accueil</Link>
+        <Link to="/" className="home-link">Accueil</Link>
       </div>
 
       {/* Titre */}

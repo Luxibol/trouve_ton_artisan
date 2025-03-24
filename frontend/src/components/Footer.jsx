@@ -29,10 +29,10 @@ function Footer() {
         </div>
         <hr className="bg-light opacity-100 border-white my-3"/>
         <ul className="list-unstyled d-flex flex-column flex-md-row justify-content-md-center gap-md-4 gap-1 px-4"> 
-          <li><Link to="/legal/mentions" className="text-white text-decoration-none">Mentions légales</Link></li>
-          <li><Link to="/legal/donnees-personnelles" className="text-white text-decoration-none">Données personnelles</Link></li>
-          <li><Link to="/legal/accessibilite" className="text-white text-decoration-none">Accessibilité</Link></li>
-          <li><Link to="/legal/cookies" className="text-white text-decoration-none">Cookies</Link></li>
+          <li><Link to="/legal/mentions" className="text-white link">Mentions légales</Link></li>
+          <li><Link to="/legal/donnees-personnelles" className="text-white link">Données personnelles</Link></li>
+          <li><Link to="/legal/accessibilite" className="text-white link">Accessibilité</Link></li>
+          <li><Link to="/legal/cookies" className="text-white link">Cookies</Link></li>
         </ul>
       </div>
     </footer>

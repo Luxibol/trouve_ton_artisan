@@ -95,7 +95,7 @@ function EntrepriseDetail() {
           <p><StarRating rating={entreprise.note || 0} /></p>
           <p>{entreprise.ville}</p>
           {entreprise.site_web && (
-            <p><a href={entreprise.site_web} target="_blank" rel="noopener noreferrer">{entreprise.site_web}</a></p>
+            <p><a  href={entreprise.site_web} target="_blank" rel="noopener noreferrer">{entreprise.site_web}</a></p>
           )}
           <p><strong>A propos</strong></p>
           <p>{entreprise.a_propos}</p>
@@ -166,8 +166,8 @@ function EntrepriseDetail() {
               ></textarea>
             </div>
             <div className="mt-4">
-              <p className="text-muted">
-                En soumettant ce formulaire, vous acceptez que vos données personnelles soient utilisées pour répondre à votre demande, conformément à notre <Link to="/politique-de-confidentialite">politique de confidentialité</Link>.
+              <p className="text-muted fst-italic">
+                En soumettant ce formulaire, vous acceptez que vos données personnelles soient utilisées pour répondre à votre demande, conformément à notre <Link to="/politique-de-confidentialite" className="gray-link">politique de confidentialité</Link>.
               </p>
             </div>
             <button type="submit" className="btn btn-primary mt-2">Envoyer</button>

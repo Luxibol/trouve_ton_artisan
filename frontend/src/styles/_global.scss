@@ -37,6 +37,29 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
+// Styles des liens spécifiques
+
+.home-link {
+  color: $button-bg-color; 
+  text-decoration: underline;
+  transition: all 0.3s ease;
+  font-size: 80%;
+
+  &:hover {
+    color: $title-color;
+  }
+}
+
+/* Lien spécifique - Autre page */
+.gray-link {
+  color: $button-bg-color;
+  text-decoration: none;
+  transition: all 0.3s ease;
+
+  &:hover {
+    color: $text-color;
+  }
+}
 
 // .img-bordered
 .img-bordered {

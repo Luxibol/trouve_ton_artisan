@@ -27,3 +27,12 @@ footer {
     }
   }
 }
+
+footer a,
+footer .link {
+  text-decoration: none; 
+
+  &:hover {
+    text-decoration: underline;
+  }
+}

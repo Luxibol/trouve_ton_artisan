@@ -7,7 +7,7 @@ function NotFound() {
     <div className="container text-start">
       {/* Lien Accueil au-dessus du titre */}      
       <div className="mb-4">
-        <Link to="/">
+        <Link to="/" className="home-link">
             Accueil
         </Link>
       </div>
