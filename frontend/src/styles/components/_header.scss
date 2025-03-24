@@ -1,7 +1,7 @@
 // Header
 header {
   background-color: $background-color;
-
+  
   // Logo
   .logo-img {
     height: auto;
@@ -20,17 +20,19 @@ header {
 
   .form-control {
     border: none;
-    border-bottom: 1px solid $primary;
-    border-right: 1px solid $primary;
+    border-bottom: 1px solid $button-bg-color;
+    border-right: 1px solid $button-bg-color;
     border-radius: 0;
     background-color: transparent;
     color: $text-color;
 
     &:focus {
+
       outline: 2px solid #ffd700;
       outline-offset: 0;
-      border-bottom: 1px solid $primary;
-      border-right: 1px solid $primary;
+      border: none;
+      border-bottom: 1px solid $button-bg-color;
+      border-right: 1px solid $button-bg-color;
       box-shadow: none;
     }
 
@@ -48,7 +50,7 @@ header {
     transform: translateY(-50%);
     color: $button-bg-color;
     font-size: 1.2rem;
-    background: #ffffff;
+    background: $background-color;
     border-radius: 50%;
     border: none;
     padding: 10px;
@@ -59,7 +61,7 @@ header {
     justify-content: center;
 
     &:hover {
-      color: #ffffff;
+      color: $background-color;
       background-color: $title-color !important;
     }
 
