@@ -3,24 +3,33 @@ import construct from '../assets/pictures/construct.jpg';
 
 function UnderConstruction() {
   return (
-    <div className="container mt-5 text-center">
-        <Link to="/">
-            Accueil
-        </Link>
-      <h1 className="decorative-line">Page en construction</h1>
-      <p className="lead">
-        Cette page sera bientôt disponible.
-        Revenez plus tard ou contactez-nous pour plus d'informations.
+    <div className="container text-start">
+      {/* Lien Accueil au-dessus du titre */}
+      <div className="mb-4">
+        <Link to="/">Accueil</Link>
+      </div>
+
+      {/* Titre */}
+      <h1 className="decorative-line mb-3">Page en construction</h1>
+
+      {/* Paragraphe */}
+      <p className="lead fw-bold mb-5">
+        Page bientôt disponible.
       </p>
-        <img
-            src={construct}
-            alt="Silouhaite qui bâtit un mur / Page en construction"
-            className="img-fluid mb-4"
-            style={{ maxWidth: '300px' }}
-        />
-      <Link to="/" className="btn btn-primary mt-3">
-        Retour à l'accueil →
-      </Link>
+
+      {/* Image */}
+      <img
+        src={construct}
+        alt="Silouhaite qui bâtit un mur / Page en construction"
+        className="img-fluid w-100 mb-4"
+      />
+
+      {/* Bouton sous l'image */}
+      <div>
+        <Link to="/" className="btn btn-primary mt-3">
+          Retourner à la page d'accueil →
+        </Link>
+      </div>
     </div>
   );
 }

@@ -1,23 +1,15 @@
-/* global.scss */
+// global.scss
 
-
-.img-bordered {
-  border: 1px solid rgba($text-color, 0.3);
-  border-radius: 5px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
+// Polices globales
 body {
+  font-family: 'Graphik', 'Poppins', Arial, sans-serif;
+  color: $text-color;
   background-color: $background-color;
   margin: 0;
   padding: 0;
   min-height: 100vh;
-  color: $text-color;
-  font-family: 'Graphik', 'Poppins', Arial, sans-serif;
-  font-size: 16px;
+  font-size: 16px; // Taille de base pour mobile
   font-weight: 400;
-  font-style: normal;
   line-height: 1.5;
   display: flex;
   flex-direction: column;
@@ -27,19 +19,65 @@ main {
   flex: 1;
 }
 
+// Titres (taille par défaut pour mobile)
 h1, h2, h3, h4, h5, h6 {
   color: $title-color;
-  font-size: 1.5rem;
-  font-weight: 700;
+  font-weight: bold;
   line-height: 1.2;
+  font-size: 1.5rem; // Taille de base des titres pour mobile
 }
 
 @media (min-width: 768px) {
   body {
-    font-size: 18px;
+    font-size: 18px; // Taille augmentée pour les grands écrans
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-size: 2rem;
+    font-size: 2rem; // Ajustement pour les grands écrans
+  }
+}
+
+
+// .img-bordered
+.img-bordered {
+  border: 1px solid rgba($text-color, 0.3);
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+// .btn-primary (exemple de style de bouton)
+.btn-primary {
+  border-radius: 50px;
+}
+
+// Decorative lines
+.decorative-line {
+  position: relative;
+  display: inline-block;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: -10px;
+    left: 0;
+    width: 40px;
+    height: 4px;
+    background-color: $accent-red;
+  }
+}
+
+.decorative-line-green {
+  position: relative;
+  display: inline-block;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: -10px;
+    left: 0;
+    width: 40px;
+    height: 4px;
+    background-color: $accent-green;
   }
 }

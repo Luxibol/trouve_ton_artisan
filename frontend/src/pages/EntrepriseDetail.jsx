@@ -79,7 +79,7 @@ function EntrepriseDetail() {
               <img
                 src={entreprise.image_url}
                 alt={`${entreprise.nom} logo`}
-                className="img-fluid rounded"
+                className="img-fluid rounded img-bordered"
                 style={{ maxHeight: '400px', width: '100%', objectFit: 'cover' }}
               />
             </div>

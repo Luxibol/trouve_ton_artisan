@@ -21,38 +21,3 @@
 @import 'pages/not-found';
 @import 'pages/search-results';
 @import 'pages/under-construction';
-
-// Styles globaux supplémentaires
-.btn-primary {
-  border-radius: 50px;
-}
-
-.decorative-line {
-  position: relative;
-  display: inline-block;
-
-  &::before {
-    content: "";
-    position: absolute;
-    top: -10px;
-    left: 0;
-    width: 40px;
-    height: 4px;
-    background-color: $accent-red;
-  }
-}
-
-.decorative-line-green {
-  position: relative;
-  display: inline-block;
-
-  &::before {
-    content: "";
-    position: absolute;
-    top: -10px;
-    left: 0;
-    width: 40px;
-    height: 4px;
-    background-color: $accent-green;
-  }
-}
