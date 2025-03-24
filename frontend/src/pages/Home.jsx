@@ -1,29 +1,67 @@
 import { useState, useEffect } from 'react';
 import Card from '../components/Card';
+import artisan from '../assets/pictures/Artisan.png';
 
 function Home() {
+  // Déclaration de l'état pour stocker les entreprises "top" (les entreprises mises en avant)
   const [topEntreprises, setTopEntreprises] = useState([]);
 
+  // Utilisation du hook useEffect pour charger les données des entreprises "top" au chargement du composant
   useEffect(() => {
+    // Requête vers l'API pour récupérer les entreprises "top"
     fetch('http://localhost:5000/api/top')
       .then(res => res.json())
       .then(data => {
-        console.log('Données des entreprises top:', data); // Pour déboguer
-        setTopEntreprises(data);
+        console.log('Données des entreprises top:', data);
+        setTopEntreprises(data); // Mise à jour de l'état avec les données récupérées
       })
       .catch(err => console.error('Erreur lors de la récupération des entreprises top:', err));
-  }, []);
+  }, []); // Le tableau vide [] signifie que cet effet ne s'exécute qu'une seule fois au chargement du composant
 
   return (
-    <div className="container mt-5">
-      <h1 className="decorative-line">Comment trouver mon artisan ?</h1>
-      <ol>
-        <li>Choisir la catégorie d'artisanat dans le menu.</li>
-        <li>Choisir un artisan.</li>
-        <li>Le contacter via le formulaire de contact.</li>
-        <li>Une réponse sera apportée sous 48h.</li>
-      </ol>
-      <h2 className="decorative-line-green mt-5">Top du mois</h2>
+    <div className="container">
+
+      {/* Version PC Tablette*/}
+      <div className="row align-items-start d-none d-md-flex mt-md-4 mb-5">
+        <div className="col-md-6 image-container pe-5 pe-md-3">
+          {/* Image */}
+          <img src={artisan} alt="Illustration Artisan" className="img-fluid home-img"/>
+        </div>
+        <div className="col-md-6 d-flex flex-column justify-content-start ps-5 ps-md-3 pt-2">
+          {/* Texte avec titre et liste */}
+          <h1 className="decorative-line">Comment trouver mon artisan ?</h1>
+          <ol className='mt-2'>
+            <li>Choisir la catégorie d'artisanat dans le menu.</li>
+            <li>Choisir un artisan.</li>
+            <li>Le contacter via le formulaire de contact.</li>
+            <li>Une réponse sera apportée sous 48h.</li>
+          </ol>
+        </div>
+      </div>
+
+      {/* Version Mobile */}
+      <div className="row d-md-none mt-3 mb-5">
+        {/* Titre */}
+        <div className="col-12">
+          <h1 className="decorative-line">Comment trouver mon artisan ?</h1>
+        </div>
+        {/* Image */}
+        <div className="col-12 d-flex justify-content-center mt-2">
+          <img src={artisan} alt="Illustration Artisan" className="img-fluid home-img"/>
+        </div>
+        {/* Liste */}
+        <div className="col-12">
+          <ol className='mt-3'>
+            <li>Choisir la catégorie d'artisanat dans le menu.</li>
+            <li>Choisir un artisan.</li>
+            <li>Le contacter via le formulaire de contact.</li>
+            <li>Une réponse sera apportée sous 48h.</li>
+          </ol>
+        </div>
+      </div>
+
+      {/* Section des entreprises top du mois */}
+      <h2 className="decorative-line-green mb-4">Les artisans du mois</h2>
       <div className="row">
         {topEntreprises.length > 0 ? (
           topEntreprises.map(entreprise => (
