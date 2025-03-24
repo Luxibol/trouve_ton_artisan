@@ -69,9 +69,20 @@ h1, h2, h3, h4, h5, h6 {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-// .btn-primary (exemple de style de bouton)
+// .btn-primary 
 .btn-primary {
   border-radius: 50px;
+  background-color: $button-bg-color;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  color: $light-text-color;
+
+
+  &:hover {
+  background-color: $title-color;
+  transform: scale(1.01);
+  transition: transform 0.3s ease, background-color 0.3s ease;;
+  }
 }
 
 // Decorative lines
