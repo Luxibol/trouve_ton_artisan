@@ -7,19 +7,6 @@
     font-weight: 700;
   }
 
-  // Style des étoiles
-  .stars {
-    font-size: 1.25rem;
-    color: #f5c518;
-    display: flex;
-    align-items: center;
-    margin-right: 5px;
-    
-    .star {
-      margin-right: 2px;
-    }
-  }
-
   // Effet de survol sur la carte
   &:hover {
     background-color: $input-bg-color; 

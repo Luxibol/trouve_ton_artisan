@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
+import StarRating from "../components/StarRating";
 
 function EntrepriseDetail() {
   const { id } = useParams();
@@ -68,34 +69,43 @@ function EntrepriseDetail() {
   }
 
   return (
-    <div className="container mt-5">
-      <h1 className="decorative-line">{entreprise.nom}</h1>
-      <div className="row">
-        <div className="col-md-6">
-          <p>{entreprise.specialite}</p>
-          <p>{[...Array(5)].map((_, i) => (
-              <span key={i} className={i < entreprise.note ? 'text-warning' : 'text-muted'}>★</span>
-            ))} ({entreprise.note}/5)
-            </p>
-          <p>{entreprise.ville}</p>
-          {entreprise.site_web && (
-            <p><a href={entreprise.site_web} target="_blank" rel="noopener noreferrer">{entreprise.site_web}</a></p>
-          )}
-          <p><strong>A propos</strong> {entreprise.a_propos}</p>
-          <Link to="/" className="btn btn-primary mt-3">Retour à l'accueil</Link>
-        </div>
-        <div className="col-md-6">
+    <div className="container">
+      {/* Première row: présentation de l'entreprise et image */}
+      <div className="row mt-3 mt-md-4">
+        {/* Colonne pour l'image de l'entreprise (6 colonnes) */}
+        <div className="col-md-6 image-container pe-lg-5 pe-md-3">
           {entreprise.image_url && (
             <div className="mb-4">
               <img
                 src={entreprise.image_url}
                 alt={`${entreprise.nom} logo`}
                 className="img-fluid rounded"
-                style={{ maxHeight: '200px', width: '100%', objectFit: 'cover' }}
+                style={{ maxHeight: '400px', width: '100%', objectFit: 'cover' }}
               />
             </div>
           )}
-          <h2 className="decorative-line-green">Contacter {entreprise.nom}</h2>
+        </div>
+
+        {/* Colonne pour la présentation de l'entreprise (6 colonnes) */}
+        <div className="col-md-6 ps-lg-5 ps-md-3 pt-2">
+          <h1 className="decorative-line">{entreprise.nom}</h1>
+          <p>
+            <em>{entreprise.specialite}</em>
+          </p>
+          <p><StarRating rating={entreprise.note || 0} /></p>
+          <p>{entreprise.ville}</p>
+          {entreprise.site_web && (
+            <p><a href={entreprise.site_web} target="_blank" rel="noopener noreferrer">{entreprise.site_web}</a></p>
+          )}
+          <p><strong>A propos</strong></p>
+          <p>{entreprise.a_propos}</p>
+        </div>
+      </div>
+
+      {/* Deuxième row: formulaire de contact (prend toute la largeur) */}
+      <div className="row mt-5">
+        <div className="col-12">
+          <h2 className="decorative-line-green pb-3">Contacter {entreprise.nom}</h2>
           {formStatus && (
             <div className={`alert alert-${formStatus.type === 'success' ? 'success' : 'danger'} mt-3`}>
               {formStatus.message}
@@ -104,54 +114,63 @@ function EntrepriseDetail() {
           {/* Formulaire pour contacter l'entreprise */}
           <form onSubmit={handleSubmit}>
             <div className="mb-3">
-              <label htmlFor="prenom" className="form-label">Prénom</label>
+              <label htmlFor="prenom" className="form-label">
+                Prénom<span className='text-danger'>*</span>
+              </label>
               <input
                 type="text"
                 className="form-control"
                 id="prenom"
-                placeholder="Votre prénom"
                 value={formData.prenom}
                 onChange={handleChange}
                 required
               />
             </div>
             <div className="mb-3">
-              <label htmlFor="nom" className="form-label">Nom</label>
+              <label htmlFor="nom" className="form-label">
+                Nom<span className='text-danger'>*</span>
+              </label>
               <input
                 type="text"
                 className="form-control"
                 id="nom"
-                placeholder="Votre nom"
                 value={formData.nom}
                 onChange={handleChange}
                 required
               />
             </div>
             <div className="mb-3">
-              <label htmlFor="email" className="form-label">Email</label>
+              <label htmlFor="email" className="form-label">
+                Email<span className='text-danger'>*</span>
+              </label>
               <input
                 type="email"
                 className="form-control"
                 id="email"
-                placeholder="Votre email"
                 value={formData.email}
                 onChange={handleChange}
                 required
               />
             </div>
             <div className="mb-3">
-              <label htmlFor="message" className="form-label">Message</label>
+              <label htmlFor="message" className="form-label">
+                Votre demande<span className='text-danger'>*</span>
+              </label>
               <textarea
                 className="form-control"
                 id="message"
                 rows="3"
-                placeholder="Votre message"
                 value={formData.message}
                 onChange={handleChange}
                 required
               ></textarea>
             </div>
-            <button type="submit" className="btn btn-primary">Envoyer</button>
+            <div className="mt-4">
+              <p className="text-muted">
+                En soumettant ce formulaire, vous acceptez que vos données personnelles soient utilisées pour répondre à votre demande, conformément à notre <Link to="/politique-de-confidentialite">politique de confidentialité</Link>.
+              </p>
+            </div>
+            <button type="submit" className="btn btn-primary mt-2">Envoyer</button>
           </form>
         </div>
       </div>

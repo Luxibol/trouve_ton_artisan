@@ -1,0 +1,30 @@
+.stars {
+    font-size: 1.25rem;
+    color: #f5c518;
+    display: flex;
+    align-items: center;
+    margin-right: 5px;
+  
+    .star {
+      margin-right: 2px;
+  
+      &.full {
+        color: #f5c518;
+      }
+  
+      &.half {
+        color: #f5c518; 
+      }
+  
+      &.empty {
+        color: #f5c518; 
+      }
+    }
+  
+    .rating-text {
+      margin-left: 5px;
+      font-size: 1rem;
+      color: $text-color;
+    }
+  }
+  
