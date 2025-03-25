@@ -35,7 +35,7 @@ function EntreprisesList() {
 
   return (
     <div className="container">
-      <h1 className="decorative-line mt-md-4 mt-3 pb-3">{categoryName || 'Catégorie inconnue'}</h1>
+      <h1 className="decorative-line-green mt-md-4 mt-3 pb-3">{categoryName || 'Catégorie inconnue'}</h1>
       <div className="row">
         {entreprises.length > 0 ? (
           entreprises.map(entreprise => (

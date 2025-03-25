@@ -88,7 +88,7 @@ function EntrepriseDetail() {
 
         {/* Colonne pour la présentation de l'entreprise (6 colonnes) */}
         <div className="col-md-6 ps-lg-5 ps-md-3 pt-2">
-          <h1 className="decorative-line">{entreprise.nom}</h1>
+          <h1 className="decorative-line-green">{entreprise.nom}</h1>
           <p>
             <em>{entreprise.specialite}</em>
           </p>
@@ -105,7 +105,7 @@ function EntrepriseDetail() {
       {/* Deuxième row: formulaire de contact (prend toute la largeur) */}
       <div className="row mt-5">
         <div className="col-12">
-          <h2 className="decorative-line-green pb-3">Contacter {entreprise.nom}</h2>
+          <h2 className="decorative-line pb-3">Contacter {entreprise.nom}</h2>
           {formStatus && (
             <div className={`alert alert-${formStatus.type === 'success' ? 'success' : 'danger'} mt-3`}>
               {formStatus.message}
@@ -115,7 +115,7 @@ function EntrepriseDetail() {
           <form onSubmit={handleSubmit}>
             <div className="mb-3">
               <label htmlFor="prenom" className="form-label">
-                Prénom<span className='text-danger'>*</span>
+                Nom<span className='text-danger'>*</span>
               </label>
               <input
                 type="text"
@@ -128,7 +128,7 @@ function EntrepriseDetail() {
             </div>
             <div className="mb-3">
               <label htmlFor="nom" className="form-label">
-                Nom<span className='text-danger'>*</span>
+                Prénom<span className='text-danger'>*</span>
               </label>
               <input
                 type="text"
