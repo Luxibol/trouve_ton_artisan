@@ -53,7 +53,7 @@ function SearchResults() {
     <div className="container py-5">
       {/* Lien vers l'accueil */}
       <div className="mb-3">
-        <Link to="/" className="text-primary">
+        <Link to="/" className="home-link">
           Accueil
         </Link>
       </div>

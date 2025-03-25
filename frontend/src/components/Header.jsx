@@ -63,7 +63,7 @@ function Header() {
   };
 
   return (
-    <header className="shadow py-3">
+    <header className="header-component shadow py-3">
       <div className="container-fluid px-3 px-lg-5">
         {/* Mobile: Logo, Search Icon, and Burger Menu */}
         <div className="d-flex justify-content-between align-items-center d-lg-none">

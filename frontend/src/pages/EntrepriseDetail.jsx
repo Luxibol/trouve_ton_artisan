@@ -69,7 +69,7 @@ function EntrepriseDetail() {
   }
 
   return (
-    <div className="container">
+    <div className="entreprise-detail container">
       {/* Première row: présentation de l'entreprise et image */}
       <div className="row mt-3 mt-md-4">
         {/* Colonne pour l'image de l'entreprise (6 colonnes) */}
@@ -95,7 +95,7 @@ function EntrepriseDetail() {
           <p><StarRating rating={entreprise.note || 0} /></p>
           <p>{entreprise.ville}</p>
           {entreprise.site_web && (
-            <p><a  href={entreprise.site_web} target="_blank" rel="noopener noreferrer">{entreprise.site_web}</a></p>
+            <p><a href={entreprise.site_web} target="_blank" rel="noopener noreferrer">{entreprise.site_web}</a></p>
           )}
           <p><strong>A propos</strong></p>
           <p>{entreprise.a_propos}</p>
