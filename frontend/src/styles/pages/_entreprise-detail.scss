@@ -1,0 +1,37 @@
+.entreprise-detail {
+  /* Personnalisation des champs de saisie (input, textarea) */
+  .form-control {
+    background-color: $input-bg-color; 
+    border: 1px solid $button-bg-color; 
+    border-radius: 25px; 
+    padding: 0.5rem 1rem; 
+    transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Transition douce au focus */
+
+    /* Effet focus */
+    &:focus {
+      outline: 2px solid #ffd700; 
+      outline-offset: 0;
+      border: 1px solid $button-bg-color; 
+      box-shadow: 0 0 8px rgba(0, 123, 255, 0.5); 
+    }
+
+    /* Ajout du padding pour que le texte commence moins près du bord */
+    padding-left: 1.5rem; 
+    padding-right: 1.5rem;
+  }
+
+  /* Personnalisation de l'astérisque rouge à côté des labels */
+  .form-label .text-danger {
+    color: $accent-red;
+  }
+
+  // je ne sais pas si j'emploi ça ou non (sur le site d'on je dois m'inspiré c'est comme ça)
+  .link-custom {
+    color: inherit;
+    transition: color 0.3s ease; /* Transition douce pour la couleur */
+
+    &:hover {
+      color: $title-color;
+    }
+  }
+}

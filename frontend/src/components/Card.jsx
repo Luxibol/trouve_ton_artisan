@@ -1,22 +1,25 @@
 import { Link } from 'react-router-dom';
+import StarRating from './StarRating';
 
+// Composant Card pour afficher une carte d'artisan avec ses informations
 function Card({ id, nom, specialite, note, ville }) {
-  const renderStars = (rating) => '★'.repeat(rating) + '☆'.repeat(5 - rating);
-
   return (
-    <div className="card">
+    // Lien vers la page détaillée de l'entreprise
+    <Link to={`/entreprise/${id}`} className="card h-100 text-decoration-none">
       <div className="card-body">
-        <h5 className="card-title">{nom || 'Artisan sans nom'}</h5>
-        <p className="card-text">
-          <span className="stars">{renderStars(note || 0)}</span> ({note || 0}/5)<br />
-          {specialite || 'Non spécifiée'}<br />
+        <h3 className="card-title">
+          {nom || 'Artisan sans nom'}
+        </h3>
+        <p className="card-text d-flex align-items-center mb-2"> 
+          {/* Affichage des étoiles avec StarRating */}
+          <StarRating rating={note || 0} />
+        </p>
+        <p>
+          <em>{specialite || 'Non spécifiée'}</em><br />
           {ville || 'Non spécifiée'}
         </p>
-        <Link to={`/entreprise/${id}`} className="btn btn-primary">
-          Voir plus
-        </Link>
       </div>
-    </div>
+    </Link>
   );
 }
 

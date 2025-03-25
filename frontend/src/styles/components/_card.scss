@@ -1,0 +1,17 @@
+// Card
+.card {
+  // Style du titre de la carte
+  .card-title {
+    color: $title-color;
+    font-size: 1.1rem;
+    font-weight: 700;
+  }
+
+  // Effet de survol sur la carte
+  &:hover {
+    background-color: $input-bg-color; 
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    cursor: pointer;
+    transform: scale(1.05);
+  }
+}

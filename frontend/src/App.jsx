@@ -12,7 +12,7 @@ function App() {
   return (
     <>
       <Header />
-      <main className="container py-4">
+      <main className="container-fluid py-4">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/entreprises/:categoryId" element={<EntreprisesList />} />
