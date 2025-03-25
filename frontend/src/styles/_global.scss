@@ -80,8 +80,7 @@ h1, h2, h3, h4, h5, h6 {
 
   &:hover {
   background-color: $title-color;
-  transform: scale(1.01);
-  transition: transform 0.3s ease, background-color 0.3s ease;;
+  transition: background-color 0.3s ease;;
   }
 }
 
