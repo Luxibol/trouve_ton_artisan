@@ -12,46 +12,43 @@ function SearchResults() {
 
   useEffect(() => {
     if (!query.trim()) {
-      setResults([]); // Si aucun terme de recherche, ne charge pas tous les artisans
+      setResults([]);
       return;
     }
-
+  
+    const controller = new AbortController();
     const fetchResults = async () => {
       setLoading(true);
       try {
         const url = `http://localhost:5000/api/search?query=${encodeURIComponent(query)}`;
-        const response = await fetch(url);
-        if (!response.ok) {
-          throw new Error(`Erreur HTTP: ${response.status}`);
-        }
-        const data = await response.json();
-        setResults(data);
+        const response = await fetch(url, { signal: controller.signal });
+        if (!response.ok) throw new Error(`Erreur HTTP: ${response.status}`);
+        setResults(await response.json());
         setError(null);
       } catch (error) {
-        console.error("Erreur lors de la recherche:", error);
-        setError("Une erreur est survenue lors de la recherche. Veuillez réessayer plus tard.");
+        if (error.name !== "AbortError") {
+          console.error("Erreur lors de la recherche:", error);
+          setError("Une erreur est survenue lors de la recherche. Veuillez réessayer plus tard.");
+        }
       } finally {
         setLoading(false);
       }
     };
-
+  
     fetchResults();
+    return () => controller.abort(); // Annuler la requête si `query` change avant qu'elle se termine
   }, [query]);
+  
 
   // Fonction pour gérer une nouvelle recherche
   const handleSearch = () => {
-    if (searchQuery.trim()) {
-      setSearchParams({ query: searchQuery });
-    } else {
-      setSearchParams({});
-    }
+    setSearchParams(searchQuery.trim() ? { query: searchQuery } : { query: "" });
   };
 
-  const handleKeyPress = (e) => {
-    if (e.key === "Enter") {
-      handleSearch();
-    }
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") handleSearch();
   };
+  
 
   // Fonction pour réinitialiser la recherche
   const handleResetSearch = (e) => {
@@ -81,7 +78,7 @@ function SearchResults() {
             className="form-control search-input-results"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            onKeyPress={handleKeyPress}
+            onKeyDown={handleKeyDown}
           />
         </div>
         <hr className="search-separator" /> {/* Séparateur entre recherche et Réinitialiser */}
@@ -118,9 +115,9 @@ function SearchResults() {
       {error ? (
         <p className="text-danger">{error}</p>
       ) : results.length > 0 ? (
-        <div className="row">
+        <div className="row g-3">
           {results.map((entreprise) => (
-            <div key={entreprise.id} className="col-12 mb-4">
+            <div key={entreprise.id} className="col-12">
               <Card
                 id={entreprise.id}
                 nom={entreprise.nom}
