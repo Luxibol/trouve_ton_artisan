@@ -9,9 +9,10 @@ const entrepriseRoutes = require('./routes/entreprises');
 const app = express();
 
 // Middlewares
-app.use(cors());
-app.use(express.json());
 app.use(helmet());
+app.use(cors({ origin: process.env.FRONTEND_URL }));
+app.use(express.json());
+
 
 // Connexion à la base de données
 sequelize.authenticate()
