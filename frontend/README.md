@@ -1,12 +1,60 @@
-# React + Vite
+# Frontend - Trouve Ton Artisan
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Interface utilisateur développée avec React, Vite, et Bootstrap pour une expérience fluide et responsive.
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Expanding the ESLint configuration
+## Prérequis
+- Node.js (v18+ recommandé)
+- Vite.js (installé via npm)
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+
+
+## Installation
+
+1. **Installer les dépendances** :
+   cd frontend
+   npm install
+
+
+2. Configurer les variables d’environnement :
+Créez un fichier .env dans frontend/ avec :
+
+VITE_API_URL=http://localhost:5000/api
+
+(En production, remplacez par l’URL de votre backend déployé.)
+
+
+3. Lancer l’application :
+
+npm start
+
+L’interface sera accessible sur http://localhost:5173.
+
+
+
+## Fonctionnalités
+
+- Accueil : Affiche les artisans "top" du mois.
+
+- Catégories : Menu déroulant pour filtrer les artisans.
+
+- Liste d’entreprises : Par catégorie, avec cartes cliquables.
+
+- Détails : Profil d’un artisan avec formulaire de contact.
+
+- Recherche : Recherche par nom.
+
+
+
+## Dépendances principales
+
+- react et react-dom : Bibliothèque UI.
+
+- react-router-dom : Navigation.
+
+- bootstrap : Styles et responsive design.
+
+- sass : Préprocesseur CSS.
+
+- react-icons : Icônes pour l’interface utilisateur.

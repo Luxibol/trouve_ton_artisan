@@ -10,7 +10,7 @@ const Categorie = sequelize.define('Categorie', {
     }
 }, { 
     timestamps: false,
-    tableName: 'categories' // Correspond à la table dans la base de données
+    tableName: 'categories'
 });
 
 module.exports = Categorie;

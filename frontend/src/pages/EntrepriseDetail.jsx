@@ -14,7 +14,6 @@ function EntrepriseDetail() {
   });
   const [formStatus, setFormStatus] = useState(null);
 
-  // Récupère les détails de l'entreprise depuis l'API lorsque l'ID change
   useEffect(() => {
     fetch(`${API_URL}/${id}`)
       .then(res => res.json())
@@ -30,10 +29,9 @@ function EntrepriseDetail() {
     setFormData({ ...formData, [id]: value });
   };
 
-  // Envoie les données du formulaire à l'API et gère les succès ou erreurs
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setFormStatus(null); // Réinitialise le statut
+    setFormStatus(null);
     try {
       const response = await fetch(`${API_URL}/contact/${id}`, {
         method: 'POST',
@@ -43,22 +41,20 @@ function EntrepriseDetail() {
       const result = await response.json();
       if (response.ok) {
         setFormStatus({ type: 'success', message: 'Message envoyé avec succès !' });
-        setFormData({ prenom: '', nom: '', email: '', message: '' }); // Réinitialise le formulaire
+        setFormData({ prenom: '', nom: '', email: '', message: '' }); 
       } else {
         setFormStatus({ type: 'error', message: result.message || 'Erreur lors de l\'envoi.' });
       }
     } catch (error) {
-      console.error('Erreur lors de l\'envoi du message:', error); // Ajout pour déboguer
+      console.error('Erreur lors de l\'envoi du message:', error);
       setFormStatus({ type: 'error', message: 'Erreur lors de l\'envoi du message.' });
     }
   };
 
-  // Si les données de l'entreprise ne sont pas encore chargées, affiche un message de chargement
   if (!entreprise) {
     return <div className="container mt-5">Chargement...</div>;
   }
 
-  // Si l'entreprise n'existe pas, affiche un message d'erreur avec un lien de retour
   if (entreprise.message === "Entreprise non trouvée") {
     return (
       <div className="container mt-5">
@@ -71,9 +67,9 @@ function EntrepriseDetail() {
 
   return (
     <div className="entreprise-detail container">
-      {/* Première row: présentation de l'entreprise et image */}
+      {/* Présentation de l'entreprise et image */}
       <div className="row mt-3 mt-md-4">
-        {/* Colonne pour l'image de l'entreprise (6 colonnes) */}
+        {/* Colonne pour l'image de l'entreprise */}
         <div className="col-md-6 image-container pe-lg-5 pe-md-3">
           {entreprise.image_url && (
             <div className="mb-4">
@@ -87,13 +83,13 @@ function EntrepriseDetail() {
           )}
         </div>
 
-        {/* Colonne pour la présentation de l'entreprise (6 colonnes) */}
+        {/* Colonne pour la présentation de l'entreprise*/}
         <div className="col-md-6 ps-lg-5 ps-md-3 pt-2">
           <h1 className="decorative-line-green">{entreprise.nom}</h1>
           <p>
             <em>{entreprise.specialite}</em>
           </p>
-          <p><StarRating rating={entreprise.note || 0} /></p>
+          <div className="pb-3"><StarRating rating={entreprise.note || 0} /></div>
           <p>{entreprise.ville}</p>
           {entreprise.site_web && (
             <p><a href={entreprise.site_web} target="_blank" rel="noopener noreferrer">{entreprise.site_web}</a></p>
@@ -102,8 +98,7 @@ function EntrepriseDetail() {
           <p>{entreprise.a_propos}</p>
         </div>
       </div>
-
-      {/* Deuxième row: formulaire de contact (prend toute la largeur) */}
+      {/* Formulaire de contact */}
       <div className="row mt-5">
         <div className="col-12">
           <h2 className="decorative-line pb-3">Contacter {entreprise.nom}</h2>
