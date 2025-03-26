@@ -35,7 +35,7 @@ function EntrepriseDetail() {
     e.preventDefault();
     setFormStatus(null); // Réinitialise le statut
     try {
-      const response = await fetch(`http://localhost:5000/api/contact/${id}`, {
+      const response = await fetch(`${API_URL}/contact/${id}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
