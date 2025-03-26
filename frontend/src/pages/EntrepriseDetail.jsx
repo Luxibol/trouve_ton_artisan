@@ -93,7 +93,7 @@ function EntrepriseDetail() {
           <p>
             <em>{entreprise.specialite}</em>
           </p>
-          <p><StarRating rating={entreprise.note || 0} /></p>
+          <div className="pb-3"><StarRating rating={entreprise.note || 0} /></div>
           <p>{entreprise.ville}</p>
           {entreprise.site_web && (
             <p><a href={entreprise.site_web} target="_blank" rel="noopener noreferrer">{entreprise.site_web}</a></p>
