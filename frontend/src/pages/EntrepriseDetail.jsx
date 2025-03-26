@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import StarRating from "../components/StarRating";
+import { API_URL } from '../config';
 
 function EntrepriseDetail() {
   const { id } = useParams();
@@ -15,7 +16,7 @@ function EntrepriseDetail() {
 
   // Récupère les détails de l'entreprise depuis l'API lorsque l'ID change
   useEffect(() => {
-    fetch(`http://localhost:5000/api/${id}`)
+    fetch(`${API_URL}/${id}`)
       .then(res => res.json())
       .then(data => {
         console.log('Données de l\'entreprise:', data);
@@ -34,7 +35,7 @@ function EntrepriseDetail() {
     e.preventDefault();
     setFormStatus(null); // Réinitialise le statut
     try {
-      const response = await fetch(`http://localhost:5000/api/contact/${id}`, {
+      const response = await fetch(`${API_URL}/contact/${id}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
@@ -88,7 +89,7 @@ function EntrepriseDetail() {
 
         {/* Colonne pour la présentation de l'entreprise (6 colonnes) */}
         <div className="col-md-6 ps-lg-5 ps-md-3 pt-2">
-          <h1 className="decorative-line">{entreprise.nom}</h1>
+          <h1 className="decorative-line-green">{entreprise.nom}</h1>
           <p>
             <em>{entreprise.specialite}</em>
           </p>
@@ -105,7 +106,7 @@ function EntrepriseDetail() {
       {/* Deuxième row: formulaire de contact (prend toute la largeur) */}
       <div className="row mt-5">
         <div className="col-12">
-          <h2 className="decorative-line-green pb-3">Contacter {entreprise.nom}</h2>
+          <h2 className="decorative-line pb-3">Contacter {entreprise.nom}</h2>
           {formStatus && (
             <div className={`alert alert-${formStatus.type === 'success' ? 'success' : 'danger'} mt-3`}>
               {formStatus.message}
@@ -115,7 +116,7 @@ function EntrepriseDetail() {
           <form onSubmit={handleSubmit}>
             <div className="mb-3">
               <label htmlFor="prenom" className="form-label">
-                Prénom<span className='text-danger'>*</span>
+                Nom<span className='text-danger'>*</span>
               </label>
               <input
                 type="text"
@@ -128,7 +129,7 @@ function EntrepriseDetail() {
             </div>
             <div className="mb-3">
               <label htmlFor="nom" className="form-label">
-                Nom<span className='text-danger'>*</span>
+                Prénom<span className='text-danger'>*</span>
               </label>
               <input
                 type="text"

@@ -94,8 +94,8 @@ h1, h2, h3, h4, h5, h6 {
     position: absolute;
     top: -10px;
     left: 0;
-    width: 40px;
-    height: 4px;
+    width: 30px;
+    height: 5px;
     background-color: $accent-red;
   }
 }
@@ -109,8 +109,25 @@ h1, h2, h3, h4, h5, h6 {
     position: absolute;
     top: -10px;
     left: 0;
-    width: 40px;
-    height: 4px;
+    width: 30px;
+    height: 5px;
     background-color: $accent-green;
   }
+}
+
+.marge-negative {
+  margin-top: -0.2rem;
+}
+
+//message d'alerte avec les couleurs fournis
+.alert-success {
+  background-color: rgba($accent-green, 0.7);
+  color: $text-color;
+  border: none;
+}
+
+.alert-error {
+  background-color: rgba($accent-red, 0.7);
+  color: $text-color;
+  border: none;
 }

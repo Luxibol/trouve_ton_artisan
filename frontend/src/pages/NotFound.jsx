@@ -30,7 +30,7 @@ function NotFound() {
       {/* Bouton sous l'image */}
       <div>
         <Link to="/" className="btn btn-primary mt-3">
-          Retourner à la page d'accueil <TiArrowRightThick className="ms-1 "/>
+          Retourner à la page d'accueil <TiArrowRightThick className="ms-1 marge-negative"/>
         </Link>
       </div>
     </div>

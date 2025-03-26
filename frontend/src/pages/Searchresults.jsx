@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useSearchParams, Link } from "react-router-dom";
 import Card from "../components/Card";
+import { API_URL } from '../config';
 
 function SearchResults() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -20,7 +21,7 @@ function SearchResults() {
     const fetchResults = async () => {
       setLoading(true);
       try {
-        const url = `http://localhost:5000/api/search?query=${encodeURIComponent(query)}`;
+        const url = `${API_URL}/search?query=${encodeURIComponent(query)}`;
         const response = await fetch(url, { signal: controller.signal });
         if (!response.ok) throw new Error(`Erreur HTTP: ${response.status}`);
         setResults(await response.json());

@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import construct from '../assets/pictures/construct.jpg';
+import { TiArrowRightThick } from "react-icons/ti";
 
 function UnderConstruction() {
   return (
@@ -10,7 +11,7 @@ function UnderConstruction() {
       </div>
 
       {/* Titre */}
-      <h1 className="decorative-line mb-3">Page en construction</h1>
+      <h1 className="decorative-line-green mb-3">Page en construction</h1>
 
       {/* Paragraphe */}
       <p className="lead fw-bold mb-5">
@@ -27,7 +28,7 @@ function UnderConstruction() {
       {/* Bouton sous l'image */}
       <div>
         <Link to="/" className="btn btn-primary mt-3">
-          Retourner à la page d'accueil →
+          Retourner à la page d'accueil <TiArrowRightThick className="ms-1 marge-negative"/>
         </Link>
       </div>
     </div>

@@ -1,15 +1,19 @@
 const express = require('express');
 const cors = require('cors');
+const helmet = require('helmet');
 const sequelize = require('./config/database');
 require('dotenv').config();
+
 
 const entrepriseRoutes = require('./routes/entreprises');
 
 const app = express();
 
 // Middlewares
-app.use(cors());
+app.use(helmet());
+app.use(cors({ origin: process.env.FRONTEND_URL}));
 app.use(express.json());
+
 
 // Connexion à la base de données
 sequelize.authenticate()

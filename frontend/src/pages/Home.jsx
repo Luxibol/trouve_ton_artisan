@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import Card from '../components/Card';
 import artisan from '../assets/pictures/Artisan.png';
+import { API_URL } from '../config';
 
 function Home() {
   // Déclaration de l'état pour stocker les entreprises "top" (les entreprises mises en avant)
@@ -9,7 +10,7 @@ function Home() {
   // Utilisation du hook useEffect pour charger les données des entreprises "top" au chargement du composant
   useEffect(() => {
     // Requête vers l'API pour récupérer les entreprises "top"
-    fetch('http://localhost:5000/api/top')
+    fetch(`${API_URL}/top`)
       .then(res => res.json())
       .then(data => {
         console.log('Données des entreprises top:', data);
@@ -29,7 +30,7 @@ function Home() {
         </div>
         <div className="col-md-6 d-flex flex-column justify-content-start ps-lg-5 ps-md-3 pt-2 ">
           {/* Texte avec titre et liste */}
-          <h1 className="decorative-line">Comment trouver mon artisan ?</h1>
+          <h1 className="decorative-line-green">Comment trouver mon artisan ?</h1>
           <ol className='mt-2'>
             <li>Choisir la catégorie d'artisanat dans le menu.</li>
             <li>Choisir un artisan.</li>
@@ -43,7 +44,7 @@ function Home() {
       <div className="row d-md-none mt-3 mb-4">
         {/* Titre */}
         <div className="col-12">
-          <h1 className="decorative-line">Comment trouver mon artisan ?</h1>
+          <h1 className="decorative-line-green">Comment trouver mon artisan ?</h1>
         </div>
         {/* Image */}
         <div className="col-12 d-flex justify-content-center mt-2">
@@ -61,7 +62,7 @@ function Home() {
       </div>
 
       {/* Section des entreprises top du mois */}
-      <h2 className="decorative-line-green mb-4">Les artisans du mois</h2>
+      <h2 className="decorative-line mb-4">Les artisans du mois</h2>
       <div className="row">
         {topEntreprises.length > 0 ? (
           topEntreprises.map(entreprise => (

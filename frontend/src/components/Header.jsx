@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import logo from '../assets/pictures/Logo.png';
 import { FaSearch, FaBars, FaTimes } from 'react-icons/fa';
+import { API_URL } from '../config';
 
 // Composant Header qui gère la navigation, la recherche et le menu responsive
 function Header() {
@@ -22,7 +23,7 @@ function Header() {
 
   // Récupération des catégories depuis l'API au chargement du composant
   useEffect(() => {
-    fetch('http://localhost:5000/api/categories')
+    fetch(`${API_URL}/categories`)
       .then(res => res.json())
       .then(data => {
         console.log('Categories fetched:', data);
