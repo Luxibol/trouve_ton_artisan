@@ -10,10 +10,10 @@ function Card({ id, nom, specialite, note, ville }) {
         <h3 className="card-title">
           {nom || 'Artisan sans nom'}
         </h3>
-        <p className="card-text d-flex align-items-center mb-2"> 
+        <div className="card-text d-flex align-items-center mb-2"> 
           {/* Affichage des étoiles avec StarRating */}
           <StarRating rating={note || 0} />
-        </p>
+        </div>
         <p>
           <em>{specialite || 'Non spécifiée'}</em><br />
           {ville || 'Non spécifiée'}
