@@ -21,7 +21,6 @@ frontend/.turbo/
 # --- XAMPP / MySQL ---
 mysql-data/
 xampp/
-*.sql
 *.sqlite
 *.db
 
