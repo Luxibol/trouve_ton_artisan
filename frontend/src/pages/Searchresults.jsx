@@ -37,11 +37,9 @@ function SearchResults() {
     };
   
     fetchResults();
-    return () => controller.abort(); // Annuler la requête si `query` change avant qu'elle se termine
+    return () => controller.abort();
   }, [query]);
   
-
-  // Fonction pour gérer une nouvelle recherche
   const handleSearch = () => {
     setSearchParams(searchQuery.trim() ? { query: searchQuery } : { query: "" });
   };
@@ -50,24 +48,20 @@ function SearchResults() {
     if (e.key === "Enter") handleSearch();
   };
   
-
-  // Fonction pour réinitialiser la recherche
   const handleResetSearch = (e) => {
     e.preventDefault();
     setSearchQuery("");
     setSearchParams({});
-    setResults([]); // Vide les résultats affichés
+    setResults([]); 
   };
 
   return (
     <div className="container py-2">
-      {/* Lien vers l'accueil */}
       <div className="mb-4">
         <Link to="/" className="home-link">
           Accueil
         </Link>
       </div>
-
       {/* Barre de recherche */}
       <div className="search-container mb-4">
         <h2 className="mb-5">Modifier la recherche</h2>
@@ -82,27 +76,23 @@ function SearchResults() {
             onKeyDown={handleKeyDown}
           />
         </div>
-        <hr className="search-separator" /> {/* Séparateur entre recherche et Réinitialiser */}
-
+        <hr className="search-separator" />
         <div className="d-flex justify-content-lg-end">
           <a href="#" className="gray-link" onClick={handleResetSearch}>
             Réinitialiser
           </a>
         </div>
       </div>
-
       {/* Message si aucune recherche n'est entrée */}
       {query.trim() === "" && !loading && !error && (
         <p className="text-muted">Entrez votre recherche dans le champ ci-dessus "Rechercher par nom d'artisan"</p>
       )}
-
       {/* Nombre de résultats */}
       {results.length > 0 && !error && !loading && query.trim() !== "" && (
         <p className="mb-4">
           {results.length} résultat{results.length > 1 ? "s" : ""} pour "{query}"
         </p>
       )}
-
       {/* Indicateur de chargement */}
       {loading && (
         <div className="text-center my-4">
@@ -111,7 +101,6 @@ function SearchResults() {
           </div>
         </div>
       )}
-
       {/* Affichage des résultats */}
       {error ? (
         <p className="text-danger">{error}</p>

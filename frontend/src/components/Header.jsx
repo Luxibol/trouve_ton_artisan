@@ -4,24 +4,15 @@ import logo from '../assets/pictures/Logo.png';
 import { FaSearch, FaBars, FaTimes } from 'react-icons/fa';
 import { API_URL } from '../config';
 
-// Composant Header qui gère la navigation, la recherche et le menu responsive
 function Header() {
-  // État pour stocker les catégories récupérées depuis l'API
   const [categories, setCategories] = useState([]);  
-  // État pour la saisie dans la barre de recherche
   const [searchQuery, setSearchQuery] = useState('');  
-  // État pour ouvrir/fermer la barre de recherche sur mobile
   const [isSearchOpen, setIsSearchOpen] = useState(false);  
-  // État pour ouvrir/fermer le menu burger sur mobile
   const [isMenuOpen, setIsMenuOpen] = useState(false);  
-  // État pour savoir quel lien est sélectionné
   const [selectedCategory, setSelectedCategory] = useState(null); 
-  // Hook pour rediriger l'utilisateur vers une nouvelle URL
   const navigate = useNavigate(); 
-  // Utilisation de useLocation pour observer les changements d'URL
   const location = useLocation(); 
 
-  // Récupération des catégories depuis l'API au chargement du composant
   useEffect(() => {
     fetch(`${API_URL}/categories`)
       .then(res => res.json())
@@ -32,16 +23,13 @@ function Header() {
       .catch(err => console.error('Erreur lors de la récupération des catégories:', err));
   }, []);
 
-  // Réinitialisation de la catégorie sélectionnée si l'URL change
   useEffect(() => {
     const path = location.pathname;
-    // Si l'URL actuelle ne correspond pas à une page d'entreprise ou catégorie, réinitialiser la sélection
     if (!path.includes('/entreprises/')) {
-      setSelectedCategory(null); // Réinitialiser la catégorie sélectionnée
+      setSelectedCategory(null);
     }
-  }, [location]); // Ce useEffect se déclenche chaque fois que l'URL change
+  }, [location]);
 
-  // Fonction pour gérer la soumission de la recherche
   const handleSearch = () => {
     if (searchQuery.trim()) {
       navigate(`/search?query=${encodeURIComponent(searchQuery)}`);
@@ -51,16 +39,14 @@ function Header() {
     }
   };
 
-  // Déclenche la recherche avec la touche "Entrée"
   const handleKeyPress = (e) => {
     if (e.key === 'Enter') {
       handleSearch();
     }
   };
 
-  // Met à jour la catégorie sélectionnée lors du clic sur un lien
   const handleLinkClick = (categoryId) => {
-    setSelectedCategory(categoryId); // Met à jour l'état lors du clic
+    setSelectedCategory(categoryId); 
   };
 
   return (
@@ -88,7 +74,6 @@ function Header() {
             </button>
           </div>
         </div>
-
         {/* Barre de recherche mobile, affichée uniquement si isSearchOpen est vrai */}
         {isSearchOpen && (
           <div className="d-lg-none mt-3 border-top pt-3">
@@ -111,7 +96,6 @@ function Header() {
             </div>
           </div>
         )}
-
         {/* Desktop: Logo, Search Bar, and Navigation */}
         <div className="row d-none d-lg-flex align-items-center">
           <div className="col-md-3">
@@ -159,7 +143,6 @@ function Header() {
             </div>
           </div>
         </div>
-
         {/* Menu burger mobile, affiché uniquement si isMenuOpen est vrai */}
         <nav className={`d-lg-none ${isMenuOpen ? 'd-block' : 'd-none'} mt-3 border-top pt-3`}>
           <ul className="nav flex-column">

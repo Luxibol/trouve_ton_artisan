@@ -39,7 +39,7 @@ const Entreprise = sequelize.define('Entreprise', {
     }
 }, { 
     timestamps: false,
-    tableName: 'entreprises' // Correspond à la table dans la base de données 
+    tableName: 'entreprises'
 });
 
 Categorie.hasMany(Entreprise, { foreignKey: 'categorie_id' });

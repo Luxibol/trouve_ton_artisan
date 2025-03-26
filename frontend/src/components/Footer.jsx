@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
 import logo from '../assets/pictures/Logo.png';
 
-// Composant Footer pour afficher le pied de page du site
 function Footer() {
   return (
     <footer className="py-1 pt-md-5 mt-5">

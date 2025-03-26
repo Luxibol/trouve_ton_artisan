@@ -8,8 +8,8 @@ async function sendEmail(to, subject, text, from = `"Trouve Ton Artisan" <${proc
       port: 465,
       secure: true,
       auth: {
-        user: process.env.EMAIL_USER, // Récupère l’email depuis .env
-        pass: process.env.EMAIL_PASS, // Récupère le mot de passe depuis .env
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS,
       },
     });
 

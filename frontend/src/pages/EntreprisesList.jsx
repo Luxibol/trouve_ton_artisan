@@ -3,36 +3,29 @@ import { useParams } from 'react-router-dom';
 import Card from '../components/Card';
 import { API_URL } from '../config';
 
-// Composant pour afficher la liste des entreprises d'une catégorie spécifique
 function EntreprisesList() {
-  // Récupération de l'ID de la catégorie depuis l'URL
   const { categoryId } = useParams();
-  // Liste des entreprises
   const [entreprises, setEntreprises] = useState([]);
-  // Nom de la catégorie
   const [categoryName, setCategoryName] = useState('');
 
-   // Effet pour récupérer les entreprises par catégorie au chargement du composant
   useEffect(() => {
-    console.log('Category ID reçu:', categoryId); // Débogage
+    console.log('Category ID reçu:', categoryId); 
     if (!categoryId || categoryId === 'undefined') {
-      // Vérification de la validité de l'ID
       console.error('ID de catégorie invalide:', categoryId);
       return;
     }
-    // Requête pour récupérer les entreprises de la catégorie spécifiée
+
     fetch(`${API_URL}/categorie/${categoryId}`)
       .then(res => res.json())
       .then(data => {
         console.log('Données des entreprises par catégorie:', data);
-        // Mise à jour de la liste des entreprises
         setEntreprises(data);
         if (data.length > 0 && data[0].Categorie) {
           setCategoryName(data[0].Categorie.nom);
         }
       })
       .catch(err => console.error('Erreur lors de la récupération des entreprises:', err));
-  }, [categoryId]); // Dépendance sur categoryId pour recharger les données à chaque changement d'ID de catégorie
+  }, [categoryId]);
 
   return (
     <div className="container">
