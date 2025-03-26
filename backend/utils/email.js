@@ -29,14 +29,4 @@ async function sendEmail(to, subject, text, from = `"Trouve Ton Artisan" <${proc
   }
 }
 
-async function testEmail() {
-  try {
-    const info = await sendEmail('email', 'Test Subject', 'Ceci est un test avec alias'); // Change email avec le mail sur lequel on veut recevoir le test
-    console.log('Test réussi:', info);
-  } catch (error) {
-    console.error('Test échoué:', error);
-  }
-}
-// testEmail(); // Décommente pour tester si besoin
-
 module.exports = sendEmail;
