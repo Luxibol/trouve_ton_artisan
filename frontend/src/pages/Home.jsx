@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import Card from '../components/Card';
 import artisan from '../assets/pictures/Artisan.png';
+import { API_URL } from '../config';
 
 function Home() {
   // Déclaration de l'état pour stocker les entreprises "top" (les entreprises mises en avant)
@@ -9,7 +10,7 @@ function Home() {
   // Utilisation du hook useEffect pour charger les données des entreprises "top" au chargement du composant
   useEffect(() => {
     // Requête vers l'API pour récupérer les entreprises "top"
-    fetch('http://localhost:5000/api/top')
+    fetch(`${API_URL}/top`)
       .then(res => res.json())
       .then(data => {
         console.log('Données des entreprises top:', data);

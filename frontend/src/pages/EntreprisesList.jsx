@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import Card from '../components/Card';
+import { API_URL } from '../config';
 
 // Composant pour afficher la liste des entreprises d'une catégorie spécifique
 function EntreprisesList() {
@@ -20,7 +21,7 @@ function EntreprisesList() {
       return;
     }
     // Requête pour récupérer les entreprises de la catégorie spécifiée
-    fetch(`http://localhost:5000/api/categorie/${categoryId}`)
+    fetch(`${API_URL}/categorie/${categoryId}`)
       .then(res => res.json())
       .then(data => {
         console.log('Données des entreprises par catégorie:', data);

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import StarRating from "../components/StarRating";
+import { API_URL } from '../config';
 
 function EntrepriseDetail() {
   const { id } = useParams();
@@ -15,7 +16,7 @@ function EntrepriseDetail() {
 
   // Récupère les détails de l'entreprise depuis l'API lorsque l'ID change
   useEffect(() => {
-    fetch(`http://localhost:5000/api/${id}`)
+    fetch(`${API_URL}/${id}`)
       .then(res => res.json())
       .then(data => {
         console.log('Données de l\'entreprise:', data);
