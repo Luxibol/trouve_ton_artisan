@@ -3,25 +3,40 @@
   display: flex;
   align-items: center;
   margin-right: 5px;
-  font-family: "Noto Sans Symbols", sans-serif; /* Police pour les étoiles */
+  font-family: "Noto Sans Symbols", sans-serif;
 
   .star {
-    margin-right: 2px;
+    margin-right: 1px; /* Espacement réduit et uniforme */
+    line-height: 1; /* Alignement vertical */
+    display: inline-block;
+    position: relative; /* Pour le pseudo-élément */
+    width: 1.25rem; /* Largeur fixe */
+    text-align: center; /* Centre l’étoile */
 
     &.full {
       color: #f5c518; /* Doré pour pleines */
     }
 
     &.half {
-      color: #f5c518;
-      background: linear-gradient(to right, #f5c518 55%, transparent 45%);
+      background: linear-gradient(to right, #f5c518 50%, transparent 50%); /* Dégradé doré à transparent */
       -webkit-background-clip: text;
       background-clip: text;
-      color: transparent; /* Le dégradé colore la moitié */
+      color: transparent; /* Le dégradé définit la couleur */
+
+      &::before {
+        content: "☆"; /* Étoile vide pour la bordure */
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%; /* Toute la largeur */
+        height: 100%; /* Toute la hauteur */
+        color: #f5c518; /* Bordure dorée */
+        z-index: -1; /* Derrière l’étoile remplie */
+      }
     }
 
     &.empty {
-      color: #f5c518; /* Gris clair pour vides, pour mieux distinguer */
+      color: #f5c518; /* Doré pour vides */
     }
   }
 
@@ -29,6 +44,6 @@
     margin-left: 5px;
     font-size: 1rem;
     color: $text-color;
-    font-family: "Graphik", "Poppins", sans-serif; /* Retour à Graphik/Poppins pour le texte */
+    font-family: "Graphik", "Poppins", sans-serif;
   }
 }
