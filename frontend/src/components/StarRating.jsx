@@ -11,7 +11,7 @@ function StarRating({ rating }) {
           <span key={`full-${i}`} className="star full">★</span>
         ))}
         {/* Demi-étoile */}
-        {halfStar && <span key="half" className="star half">⯨</span>}
+        {halfStar && <span key="half" className="star half">★</span>}
         {/* Étoiles vides */}
         {[...Array(emptyStars)].map((_, i) => (
           <span key={`empty-${i}`} className="star empty">☆</span>
