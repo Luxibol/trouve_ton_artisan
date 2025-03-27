@@ -8,8 +8,15 @@ const sequelize = new Sequelize(
   {
     host: process.env.DB_HOST,
     dialect: 'mysql',
-    logging: false,
-  }
+    port: process.env.DB_PORT,
+    dialectOptions: {
+      connectTimeout: 60000, // Timeout de 60s pour éviter les échecs de connexion lente
+      ssl: {
+        require: true, // Force l'utilisation de SSL pour la sécurité
+        rejectUnauthorized: false, // Désactive la vérification stricte des certificats
+      },
+    },
+  },
 );
 
 module.exports = sequelize;
