@@ -14,9 +14,10 @@
 
     &.half {
       color: #f5c518;
-      width: 0.45em; /* Moitié de la largeur */
-      overflow: hidden; /* Masque la partie droite */
-      display: inline-block;
+      background: linear-gradient(to right, #f5c518 55%, transparent 45%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent; /* Le dégradé colore la moitié */
     }
 
     &.empty {
